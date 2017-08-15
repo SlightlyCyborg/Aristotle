@@ -95,3 +95,16 @@
         (is (= (into [] (:words (nth control rand-ind)))
                (nth blocked rand-ind))))))))
 
+
+(defn add-pos [video]
+  (map
+   #(assoc %1 :pos %2)
+   video
+   (blockify-list
+    (nlp-utils/tag-pos (de-blockify video :words))
+    video
+    :words)))
+
+(deftest test-add-pos
+  (let [vid (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
+    (println (add-pos vid))))
