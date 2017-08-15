@@ -108,3 +108,25 @@
 (deftest test-add-pos
   (let [vid (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
     (println (add-pos vid))))
+
+(def into-string-array (partial into-array String))
+
+(defn add-lemmas
+  "Assocs lemmas into the video map"
+  [video]
+  (if (nil? ((first video) :pos))
+    (throw (Exception. "Video needs parts of speech to lemmatize")))
+  (into [] (apply nlp-utils/lemmatize
+                  [(-> video
+                       (de-blockify :words)
+                       into-string-array)
+                   (-> video
+                       (de-blockify :pos)
+                       into-string-array)])))
+
+
+(deftest test-add-lemmas
+  (let [vid (make "resources/subs/elliot_hulse/EoyDLWsczgU_0_en.srt")]
+   (is (thrown? Exception
+                (add-lemmas vid)))
+   (println (add-lemmas (add-pos vid)))))
