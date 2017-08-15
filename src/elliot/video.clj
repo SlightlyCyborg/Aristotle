@@ -16,13 +16,31 @@
 (defn parse-int [s]
    (Integer. (re-find  #"\d+" s )))
 
-(defn make-video [f]
+(defn parse-block-time [block-time-text]
+  (->> block-time-text
+        (#(clojure.string/split % #" --> "))
+       (map #(clojure.string/split % #"[:,]"))
+       (map (fn [t] (map #(parse-int %) t)))
+       (map #(interleave [:hour :minute :second :millis] %))
+       (map #(apply hash-map %))
+       (interleave [:start :stop])
+       (apply hash-map)))
+
+(deftest test-parse-block-time
+  (let [test-data "00:05:01,670 --> 00:05:06,970"]
+    (is (=
+         (parse-block-time test-data)
+         {:start {:hour 0 :second 1 :millis 670 :minute 5}
+          :stop  {:hour 0 :second 6 :millis 970 :minute 5}}))))
+
+(defn make [f]
   (-> (slurp f)
       (clojure.string/replace #"<[^>]+>" "")
       (clojure.string/split #"\r\n\r\n")
       ((partial map #(clojure.string/split % #"\r\n")))
       ((partial map #(do {:block-id (parse-int (first %))
-                          :words (nlp-utils/tokenize (nth % 2))})))))
+                          :words (nlp-utils/tokenize (nth % 2))
+                          :time (parse-block-time (second %))})))))
 
 (defn de-blockify [video key]
   (reduce
@@ -58,7 +76,7 @@
   ;;Tests
 (deftest test-blockify
   (let [control
-        (make-video "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
+        (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
 
    (is (thrown? Exception
                 (blockify-list
