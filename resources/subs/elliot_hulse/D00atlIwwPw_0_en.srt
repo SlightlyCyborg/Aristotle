@@ -1,0 +1,512 @@
+﻿1
+00:00:00,060 --> 00:00:04,019
+<font color="#E5E5E5">we got this</font><font color="#CCCCCC"> question here from</font><font color="#E5E5E5"> our buddy</font>
+
+2
+00:00:01,469 --> 00:00:05,970
+<font color="#CCCCCC">Dan he's got really poor self-discipline</font>
+
+3
+00:00:04,019 --> 00:00:08,489
+<font color="#E5E5E5">and it's it's really creeping into all</font>
+
+4
+00:00:05,969 --> 00:00:10,169
+<font color="#E5E5E5">areas of his life</font><font color="#CCCCCC"> so bad that</font><font color="#E5E5E5"> even if he</font>
+
+5
+00:00:08,490 --> 00:00:10,980
+has an important meeting<font color="#E5E5E5"> to go to or a</font>
+
+6
+00:00:10,169 --> 00:00:13,798
+class to get to
+
+7
+00:00:10,980 --> 00:00:15,809
+<font color="#E5E5E5">he won't get up</font><font color="#CCCCCC"> in the morning right I</font>
+
+8
+00:00:13,798 --> 00:00:17,309
+<font color="#E5E5E5">mean that is simple as just having the</font>
+
+9
+00:00:15,808 --> 00:00:19,439
+discipline to<font color="#E5E5E5"> get his ass up in the</font>
+
+10
+00:00:17,309 --> 00:00:21,179
+morning<font color="#E5E5E5"> it's it's difficult for him</font><font color="#CCCCCC"> he</font>
+
+11
+00:00:19,439 --> 00:00:23,399
+says that he's tried<font color="#E5E5E5"> you know this is</font>
+
+12
+00:00:21,179 --> 00:00:26,609
+something<font color="#CCCCCC"> that it is bothering him he</font>
+
+13
+00:00:23,399 --> 00:00:27,118
+just hasn't found a<font color="#CCCCCC"> way to get over</font>
+
+14
+00:00:26,609 --> 00:00:28,260
+himself
+
+15
+00:00:27,118 --> 00:00:29,849
+because that's<font color="#E5E5E5"> really what</font><font color="#CCCCCC"> it is in</font>
+
+16
+00:00:28,260 --> 00:00:31,289
+order<font color="#E5E5E5"> to do the things</font><font color="#CCCCCC"> that</font><font color="#E5E5E5"> are</font>
+
+17
+00:00:29,849 --> 00:00:33,659
+associated<font color="#E5E5E5"> with the life that</font><font color="#CCCCCC"> he wants</font>
+
+18
+00:00:31,289 --> 00:00:35,609
+<font color="#CCCCCC">to create for</font><font color="#E5E5E5"> himself how does he build</font>
+
+19
+00:00:33,659 --> 00:00:36,689
+<font color="#E5E5E5">self-discipline</font><font color="#CCCCCC"> the very first thing I</font>
+
+20
+00:00:35,609 --> 00:00:38,070
+would<font color="#E5E5E5"> ask</font><font color="#CCCCCC"> you to do and I'm gonna</font><font color="#E5E5E5"> give</font>
+
+21
+00:00:36,689 --> 00:00:39,509
+you<font color="#E5E5E5"> multiple different steps here is to</font>
+
+22
+00:00:38,070 --> 00:00:41,730
+<font color="#E5E5E5">get very clear</font><font color="#CCCCCC"> and</font><font color="#E5E5E5"> what you want in your</font>
+
+23
+00:00:39,509 --> 00:00:43,738
+<font color="#E5E5E5">life</font><font color="#CCCCCC"> if you don't</font><font color="#E5E5E5"> have</font><font color="#CCCCCC"> something to</font>
+
+24
+00:00:41,729 --> 00:00:46,709
+strive towards<font color="#CCCCCC"> if you don't have an</font>
+
+25
+00:00:43,738 --> 00:00:48,328
+ideal to reach for then there really<font color="#E5E5E5"> is</font>
+
+26
+00:00:46,710 --> 00:00:49,649
+no reason<font color="#CCCCCC"> to get up</font><font color="#E5E5E5"> in the morning right</font>
+
+27
+00:00:48,329 --> 00:00:52,739
+<font color="#E5E5E5">I mean most people</font><font color="#CCCCCC"> go through their</font>
+
+28
+00:00:49,649 --> 00:00:54,989
+lives<font color="#CCCCCC"> just to get to the next</font><font color="#E5E5E5"> day right</font>
+
+29
+00:00:52,738 --> 00:00:57,448
+and if that's the<font color="#E5E5E5"> case if it's just to</font>
+
+30
+00:00:54,988 --> 00:00:59,669
+get up so that you can play video<font color="#E5E5E5"> games</font>
+
+31
+00:00:57,448 --> 00:01:00,988
+or<font color="#E5E5E5"> or eat peanut</font><font color="#CCCCCC"> butter and jelly</font>
+
+32
+00:00:59,670 --> 00:01:02,579
+sandwiches or whatever the hell<font color="#CCCCCC"> it is</font>
+
+33
+00:01:00,988 --> 00:01:04,859
+<font color="#CCCCCC">that most people do</font><font color="#E5E5E5"> with their lives</font>
+
+34
+00:01:02,579 --> 00:01:07,019
+then you're<font color="#E5E5E5"> going</font><font color="#CCCCCC"> to</font><font color="#E5E5E5"> have very</font><font color="#CCCCCC"> much</font>
+
+35
+00:01:04,859 --> 00:01:09,030
+<font color="#E5E5E5">motivation you want to create a</font>
+
+36
+00:01:07,019 --> 00:01:10,408
+situation<font color="#E5E5E5"> where there is something so</font>
+
+37
+00:01:09,030 --> 00:01:12,840
+extraordinary that<font color="#CCCCCC"> you</font><font color="#E5E5E5"> want to achieve</font>
+
+38
+00:01:10,409 --> 00:01:15,750
+in your life<font color="#CCCCCC"> on the far end</font><font color="#E5E5E5"> of things</font>
+
+39
+00:01:12,840 --> 00:01:17,728
+the big picture<font color="#CCCCCC"> that you can't stay in</font>
+
+40
+00:01:15,750 --> 00:01:19,560
+<font color="#E5E5E5">bed</font><font color="#CCCCCC"> I'm excited</font><font color="#E5E5E5"> to get my ass out of bed</font>
+
+41
+00:01:17,728 --> 00:01:21,840
+<font color="#E5E5E5">every</font><font color="#CCCCCC"> single day I get up and I can't</font>
+
+42
+00:01:19,560 --> 00:01:23,129
+wait<font color="#CCCCCC"> to get things going and it has to</font>
+
+43
+00:01:21,840 --> 00:01:25,799
+do with<font color="#E5E5E5"> the fact that I've got a big</font>
+
+44
+00:01:23,129 --> 00:01:28,828
+vision<font color="#CCCCCC"> I've got a big</font><font color="#E5E5E5"> picture create a</font>
+
+45
+00:01:25,799 --> 00:01:31,320
+big<font color="#E5E5E5"> picture for yourself right getting</font>
+
+46
+00:01:28,828 --> 00:01:33,569
+up and<font color="#CCCCCC"> going to</font><font color="#E5E5E5"> school is irritating to</font>
+
+47
+00:01:31,319 --> 00:01:36,599
+you but you see it as a step towards a
+
+48
+00:01:33,569 --> 00:01:38,879
+bigger<font color="#E5E5E5"> picture that which would be the</font>
+
+49
+00:01:36,599 --> 00:01:40,739
+ideal<font color="#CCCCCC"> life for you create</font><font color="#E5E5E5"> something</font>
+
+50
+00:01:38,879 --> 00:01:42,539
+extraordinary<font color="#CCCCCC"> that's the other thing</font>
+
+51
+00:01:40,739 --> 00:01:44,670
+create an extraordinary vision<font color="#E5E5E5"> for</font>
+
+52
+00:01:42,540 --> 00:01:46,280
+yourself<font color="#E5E5E5"> right don't let anybody tell</font>
+
+53
+00:01:44,670 --> 00:01:48,899
+<font color="#CCCCCC">you what</font><font color="#E5E5E5"> you can and cannot achieve</font>
+
+54
+00:01:46,280 --> 00:01:51,409
+create something huge
+
+55
+00:01:48,899 --> 00:01:53,640
+no matter how ridiculous<font color="#E5E5E5"> it is because</font>
+
+56
+00:01:51,409 --> 00:01:56,790
+it's<font color="#E5E5E5"> going to get you up every</font><font color="#CCCCCC"> single</font>
+
+57
+00:01:53,640 --> 00:01:59,819
+<font color="#CCCCCC">day and when</font><font color="#E5E5E5"> you get</font><font color="#CCCCCC"> up you're now</font><font color="#E5E5E5"> going</font>
+
+58
+00:01:56,790 --> 00:02:02,909
+<font color="#CCCCCC">to start practicing</font><font color="#E5E5E5"> the strengthening of</font>
+
+59
+00:01:59,819 --> 00:02:05,129
+your will power spoken about<font color="#E5E5E5"> this</font><font color="#CCCCCC"> in</font>
+
+60
+00:02:02,909 --> 00:02:07,590
+other videos<font color="#E5E5E5"> but</font><font color="#CCCCCC"> you begin with one</font>
+
+61
+00:02:05,129 --> 00:02:11,789
+thing<font color="#E5E5E5"> a tiny win get up every morning</font>
+
+62
+00:02:07,590 --> 00:02:13,210
+<font color="#E5E5E5">don't worry about making breakfast don't</font>
+
+63
+00:02:11,789 --> 00:02:14,530
+<font color="#E5E5E5">worry about</font>
+
+64
+00:02:13,210 --> 00:02:16,180
+whether there's gas in<font color="#CCCCCC"> your car don't</font>
+
+65
+00:02:14,530 --> 00:02:18,009
+<font color="#E5E5E5">worry</font><font color="#CCCCCC"> about don't worry about all the</font>
+
+66
+00:02:16,180 --> 00:02:19,689
+different<font color="#CCCCCC"> things associated</font><font color="#E5E5E5"> with what it</font>
+
+67
+00:02:18,009 --> 00:02:22,179
+would take to<font color="#E5E5E5"> be a successful person</font>
+
+68
+00:02:19,689 --> 00:02:25,060
+<font color="#E5E5E5">just begin</font><font color="#CCCCCC"> with one thing</font><font color="#E5E5E5"> just build the</font>
+
+69
+00:02:22,180 --> 00:02:26,710
+willpower<font color="#CCCCCC"> build the character</font><font color="#E5E5E5"> associated</font>
+
+70
+00:02:25,060 --> 00:02:29,770
+with doing<font color="#E5E5E5"> one</font><font color="#CCCCCC"> freakin thing</font>
+
+71
+00:02:26,710 --> 00:02:31,090
+set<font color="#E5E5E5"> your alarm clock five o'clock or six</font>
+
+72
+00:02:29,770 --> 00:02:32,830
+o'clock<font color="#CCCCCC"> whatever time you get up</font>
+
+73
+00:02:31,090 --> 00:02:33,340
+<font color="#CCCCCC">shouldn't</font><font color="#E5E5E5"> be getting up any later than</font>
+
+74
+00:02:32,830 --> 00:02:36,730
+<font color="#E5E5E5">that</font>
+
+75
+00:02:33,340 --> 00:02:40,060
+and get your ass out of bed no matter
+
+76
+00:02:36,729 --> 00:02:43,659
+what it takes<font color="#CCCCCC"> even if you're sick and</font>
+
+77
+00:02:40,060 --> 00:02:44,650
+<font color="#CCCCCC">you got snot dripping down your chin</font><font color="#E5E5E5"> get</font>
+
+78
+00:02:43,659 --> 00:02:46,870
+your ass up
+
+79
+00:02:44,650 --> 00:02:48,010
+blow your<font color="#E5E5E5"> nose brush your teeth and if</font>
+
+80
+00:02:46,870 --> 00:02:50,439
+you're going<font color="#E5E5E5"> back</font><font color="#CCCCCC"> to bed cuz you're sick</font>
+
+81
+00:02:48,009 --> 00:02:55,000
+go<font color="#E5E5E5"> back to bed</font><font color="#CCCCCC"> but make that a habit</font>
+
+82
+00:02:50,439 --> 00:02:59,109
+<font color="#CCCCCC">every single day</font><font color="#E5E5E5"> right</font><font color="#CCCCCC"> so now you've got</font>
+
+83
+00:02:55,000 --> 00:03:01,210
+<font color="#CCCCCC">two things</font><font color="#E5E5E5"> you've got a huge carrot at</font>
+
+84
+00:02:59,110 --> 00:03:03,730
+the<font color="#CCCCCC"> end of the stick</font><font color="#E5E5E5"> that's drawing you</font>
+
+85
+00:03:01,210 --> 00:03:05,610
+towards a big vision<font color="#E5E5E5"> that you can't help</font>
+
+86
+00:03:03,729 --> 00:03:07,689
+yourself but to be excited about
+
+87
+00:03:05,610 --> 00:03:10,480
+<font color="#E5E5E5">achieving every single day of your</font><font color="#CCCCCC"> life</font>
+
+88
+00:03:07,689 --> 00:03:13,389
+<font color="#E5E5E5">that's huge</font><font color="#CCCCCC"> and the second</font><font color="#E5E5E5"> thing is</font>
+
+89
+00:03:10,479 --> 00:03:15,729
+you're<font color="#E5E5E5"> building the methodology by which</font>
+
+90
+00:03:13,389 --> 00:03:17,649
+you will<font color="#E5E5E5"> become successful which</font>
+
+91
+00:03:15,729 --> 00:03:19,659
+requires structure<font color="#E5E5E5"> getting up every</font>
+
+92
+00:03:17,650 --> 00:03:21,159
+single day<font color="#E5E5E5"> be like a machine</font>
+
+93
+00:03:19,659 --> 00:03:22,810
+pretend<font color="#E5E5E5"> you're</font><font color="#CCCCCC"> a machine sometimes when</font>
+
+94
+00:03:21,159 --> 00:03:25,270
+we you<font color="#CCCCCC"> know</font><font color="#E5E5E5"> you put on a Superman cape</font>
+
+95
+00:03:22,810 --> 00:03:27,099
+you feel like<font color="#CCCCCC"> frickin Superman pretend</font>
+
+96
+00:03:25,270 --> 00:03:30,189
+you're a machine<font color="#CCCCCC"> pretend you're a robot</font>
+
+97
+00:03:27,099 --> 00:03:31,449
+<font color="#CCCCCC">and when the alarm clock goes off you</font>
+
+98
+00:03:30,189 --> 00:03:32,740
+<font color="#E5E5E5">get up no matter</font><font color="#CCCCCC"> what it doesn't matter</font>
+
+99
+00:03:31,449 --> 00:03:34,329
+<font color="#E5E5E5">you're just a machine</font><font color="#CCCCCC"> isn't about what</font>
+
+100
+00:03:32,740 --> 00:03:36,420
+you<font color="#E5E5E5"> feel</font><font color="#CCCCCC"> like at that moment</font><font color="#E5E5E5"> right</font>
+
+101
+00:03:34,330 --> 00:03:39,580
+listen<font color="#E5E5E5"> Elliot</font><font color="#CCCCCC"> host</font><font color="#E5E5E5"> contradict himself</font>
+
+102
+00:03:36,419 --> 00:03:42,639
+<font color="#E5E5E5">you want to be</font><font color="#CCCCCC"> very feeling but you</font><font color="#E5E5E5"> also</font>
+
+103
+00:03:39,580 --> 00:03:45,820
+want<font color="#CCCCCC"> to be very realistic and a reality</font>
+
+104
+00:03:42,639 --> 00:03:47,949
+<font color="#CCCCCC">principle</font><font color="#E5E5E5"> dictates that if you structure</font>
+
+105
+00:03:45,819 --> 00:03:50,979
+<font color="#CCCCCC">your life you create discipline you use</font>
+
+106
+00:03:47,949 --> 00:03:53,349
+willpower<font color="#E5E5E5"> to create virtues associated</font>
+
+107
+00:03:50,979 --> 00:03:54,789
+<font color="#E5E5E5">with big pictures and ideals for your</font>
+
+108
+00:03:53,349 --> 00:03:59,489
+life<font color="#E5E5E5"> you're going to be a successful</font>
+
+109
+00:03:54,789 --> 00:04:02,829
+<font color="#E5E5E5">person</font><font color="#CCCCCC"> they're</font><font color="#E5E5E5"> said so begin with that</font>
+
+110
+00:03:59,490 --> 00:04:05,560
+why are you<font color="#CCCCCC"> getting up and then build</font>
+
+111
+00:04:02,830 --> 00:04:07,870
+the willpower<font color="#E5E5E5"> associated with getting up</font>
+
+112
+00:04:05,560 --> 00:04:09,340
+every single<font color="#E5E5E5"> day everything else don't</font>
+
+113
+00:04:07,870 --> 00:04:10,270
+<font color="#E5E5E5">matter</font><font color="#CCCCCC"> I don't</font><font color="#E5E5E5"> care what else you do</font>
+
+114
+00:04:09,340 --> 00:04:11,890
+<font color="#CCCCCC">with the rest of</font><font color="#E5E5E5"> your</font><font color="#CCCCCC"> day</font>
+
+115
+00:04:10,270 --> 00:04:13,659
+because it's not going<font color="#E5E5E5"> to matter</font><font color="#CCCCCC"> what</font>
+
+116
+00:04:11,889 --> 00:04:15,609
+<font color="#E5E5E5">you do is not nearly as important so</font>
+
+117
+00:04:13,659 --> 00:04:17,858
+you're becoming through that practice<font color="#E5E5E5"> of</font>
+
+118
+00:04:15,610 --> 00:04:19,569
+getting<font color="#CCCCCC"> your ass up</font><font color="#E5E5E5"> once you build that</font>
+
+119
+00:04:17,858 --> 00:04:21,639
+discipline I guarantee you'll take it
+
+120
+00:04:19,569 --> 00:04:24,259
+into other<font color="#E5E5E5"> areas hmm I've got a</font>
+
+121
+00:04:21,639 --> 00:04:27,979
+<font color="#E5E5E5">self-esteem and the</font><font color="#CCCCCC"> verge</font>
+
+122
+00:04:24,259 --> 00:04:29,750
+you of<font color="#E5E5E5"> Discipline</font><font color="#CCCCCC"> I can extend that</font><font color="#E5E5E5"> into</font>
+
+123
+00:04:27,980 --> 00:04:30,950
+other<font color="#E5E5E5"> areas of my life you're going to</font>
+
+124
+00:04:29,750 --> 00:04:32,600
+have better<font color="#CCCCCC"> relationships you're going</font>
+
+125
+00:04:30,949 --> 00:04:34,279
+to make more<font color="#E5E5E5"> money</font><font color="#CCCCCC"> hell you might even</font>
+
+126
+00:04:32,600 --> 00:04:35,930
+<font color="#E5E5E5">start brushing your teeth more and have</font>
+
+127
+00:04:34,279 --> 00:04:39,579
+<font color="#CCCCCC">better breath who knows you know</font><font color="#E5E5E5"> I don't</font>
+
+128
+00:04:35,930 --> 00:04:39,579
+know that's<font color="#E5E5E5"> it good luck</font>
+
