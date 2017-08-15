@@ -42,6 +42,10 @@
                           :words (nlp-utils/tokenize (nth % 2))
                           :time (parse-block-time (second %))})))))
 
+
+(deftest video-make
+  (println (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")))
+
 (defn de-blockify [video key]
   (reduce
    #(concat %1 (key %2))
@@ -90,6 +94,4 @@
       (let [rand-ind (rand-int (count control))]
         (is (= (into [] (:words (nth control rand-ind)))
                (nth blocked rand-ind))))))))
-
-
 
