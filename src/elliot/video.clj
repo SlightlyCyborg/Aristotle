@@ -116,13 +116,18 @@
   [video]
   (if (nil? ((first video) :pos))
     (throw (Exception. "Video needs parts of speech to lemmatize")))
-  (into [] (apply nlp-utils/lemmatize
-                  [(-> video
-                       (de-blockify :words)
-                       into-string-array)
-                   (-> video
-                       (de-blockify :pos)
-                       into-string-array)])))
+  (-> (into [] (apply nlp-utils/lemmatize
+                   [(-> video
+                        (de-blockify :words)
+                        into-string-array)
+                    (-> video
+                        (de-blockify :pos)
+                        into-string-array)]))
+      (blockify-list video :words)
+      ((partial
+        map
+        (fn [block lemmas] (assoc block :lemmas lemmas))
+        video))))
 
 
 (deftest test-add-lemmas
