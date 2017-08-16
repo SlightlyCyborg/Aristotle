@@ -1,18 +1,23 @@
 (ns elliot.server
+  (:require [elliot.templates.home :as home])
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]] 
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server
-        ring.middleware.params))
+        ring.middleware.params
+        ring.middleware.resource))
 
-(defn home [req]
-  {:status 200})
+(defn home-route [req]
+  {:status 200
+   :body (home/render)})
 
 (defroutes all-routes
-  (GET "/" [] home))
+  (GET "/" [] home-route))
 
 (def app
-  (wrap-params all-routes))
+  (->  all-routes
+       wrap-params
+       (wrap-resource "public")))
 
 (defonce server (atom nil))
 
