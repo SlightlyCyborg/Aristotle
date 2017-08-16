@@ -1,5 +1,6 @@
 (ns elliot.video
-  (:use clojure.test)
+  (:use clojure.test
+        clojure.pprint)
   (:require [clojure.spec.alpha :as s]
             [elliot.nlp-utils :as nlp-utils])
   (:import [opennlp.tools.tokenize WhitespaceTokenizer]
@@ -134,4 +135,4 @@
   (let [vid (make "resources/subs/elliot_hulse/EoyDLWsczgU_0_en.srt")]
    (is (thrown? Exception
                 (add-lemmas vid)))
-   (println (add-lemmas (add-pos vid)))))
+   (pprint (add-lemmas (add-pos vid)))))

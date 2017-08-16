@@ -8,20 +8,10 @@
       file-seq
       ((partial filter #(.isFile %)))))
 
-(defn load-all-subtitles []
+(defn load-all-videos []
   (-> (get-available-subtitle-files)
       ((partial map #(video/make %)))))
 
-
-(defn collect-all-words [subs]
-  (reduce
-   #(apply conj %1
-           (reduce
-            (fn [col block] (apply conj col (:words block)))
-            []
-            %2))
-   []
-   subs))
 
 
 
