@@ -3,16 +3,32 @@
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]] 
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
+        [elliot.search :as search]
         org.httpkit.server
         ring.middleware.params
         ring.middleware.resource))
 
-(defn home-route [req]
+(defn search [query]
+  (search-template/render (if (not (nil? (query :q)))
+                            (search/go query)
+                            {:docs []})))
+
+(defn example-search []
+  (search-template/render search-template/mockup-data))
+
+(defn home-route [{{terms "terms"} :params}]
+  (println terms)
   {:status 200
-   :body (home/render)})
+   :body  (home/render (search {:q terms}))})
+
+(defn example-route [req]
+  {:status 200
+   :body (home/render (example-search))})
+
 
 (defroutes all-routes
-  (GET "/" [] home-route))
+  (GET "/" [] home-route)
+  (GET "/example" [] example-route))
 
 (def app
   (->  all-routes

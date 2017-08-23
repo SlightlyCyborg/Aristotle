@@ -32,6 +32,9 @@
        (interleave [:start :stop])
        (apply hash-map)))
 
+(defn time-struct->string [{h :hour m :minute s :second mi :millis}]
+  (str h ":" m ":" s ":" mi))
+
 (deftest test-parse-block-time
   (let [test-data "00:05:01,670 --> 00:05:06,970"]
     (is (=
@@ -110,10 +113,26 @@
         (is (= (into [] (::words (nth control rand-ind)))
                (nth blocked rand-ind))))))))
 
+(defn assoc-viewable-words
+  "Adds :viewable-words to block which adds pre and post blocks to the words"
+  [caption-blocks]
+  (mapv
+   (fn [pre cur post]
+     (assoc cur 
+            ::viewable-words
+
+            (str (get pre ::words "")
+                 " "
+                 (get cur ::words)
+                 " "
+                 (get post ::words ""))))
+   (into [] (conj (drop-last caption-blocks) nil))
+   caption-blocks
+   (conj (into [] (rest caption-blocks)) nil)))
+
 (defn load-caption [f]
   (let [caption-blocks (load-caption-blocks f)]
-   {::blocks caption-blocks
-
+   {::blocks (assoc-viewable-words caption-blocks)
     ::full-caption (de-blockify-words caption-blocks)}))
 
 (defn add-pos [video]
@@ -201,7 +220,8 @@
                  {{description :description
                    uploaded :publishedAt
                    title :title
-                   channel-title :channelTitle}
+                   channel-title :channelTitle
+                   {thumbnail :standard} :thumbnails}
                   :snippet
 
                   {views :viewCount
@@ -213,7 +233,8 @@
                      ::title title
                      ::channel-title channel-title
                      ::views (parse-int views)
-                     ::likes (parse-int likes)))
+                     ::likes (parse-int likes)
+                     ::thumbnail (:url thumbnail)))
             videos)))
 
 (s/def ::id            string?)
@@ -239,9 +260,24 @@
    :likes_i (video-struct ::likes)
    :views_i (video-struct ::views)
    :channel_title_s (video-struct ::channel-title)
-   :captions_t (get-in video-struct [::caption ::full-caption])})
+   :captions_t (get-in video-struct [::caption ::full-caption])
+   :thumbnail_s (video-struct ::thumbnail)})
+
+
+(defn make-index-block-struct
+  [video-struct]
+  (mapv
+   (fn [block]
+     {:id (str (video-struct ::id) "-" (block ::block-id)) 
+      :video_id_s (video-struct ::id)
+      :captions_t (block ::words)
+      :viewable_words_t (block ::viewable-words)
+      :start_time_s (time-struct->string (get-in block [::time :start]))
+      :stop_time_s (time-struct->string (get-in block [::time :stop]))})
+   (get-in video-struct [::caption ::blocks])))
 
 (def connection (config/all :solr-connection))
+(def block-connection (config/all :solr-block-connection))
 
 (defn index [video-structs]
   (->>
@@ -253,14 +289,24 @@
   ;video-structs
   )
 
+(defn index-blocks [video-structs]
+  (->>
+   (doall
+    (flatten
+     (mapv
+      make-index-block-struct
+      video-structs)))
+   (#(println (solr/add-docs block-connection %)))))
+
 (def all-videos
   (->> srt-source-folders
       get-all-subtitle-file-objs
       video-ids
       (map #(assoc % ::caption (load-caption (:caption-file %))))
-      (partition 10)
+      (partition 5)
       (map #(get-video-attrs %))
+      ;(map #(map make-index-block-struct %))
       ;(map #(map make-index-struct %))
       ;(map #(index %))
-      ))
+      (map #(index-blocks %))))
 

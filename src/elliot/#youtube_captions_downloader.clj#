@@ -69,9 +69,13 @@
       (get-in ["items" 0 "contentDetails" "relatedPlaylists" "uploads"])))
 
 (def elliot-playlist-id (get-channel-uploads-playlist-id es-u-name))
+(def strength-camp-playlist-id (get-channel-uploads-playlist-id strength-camp-u-name))
 
 (defn get-all-of-elliots-videos [] (playlist-id->video-ids elliot-playlist-id))
 
+(defn get-all-of-strength-camp-videos [] (playlist-id->video-ids strength-camp-playlist-id))
+
+(def strength-camp-video-ids (get-all-of-strength-camp-videos))
 
 (defn video-id->caption-id [video-id]
   (-> @(http/get "https://www.googleapis.com/youtube/v3/captions"
@@ -88,5 +92,14 @@
              {:query-params {:key youtube-key}}))
 
 
+(defn spit-youtube-urls [f id-set]
+  ;;Write file if doesn't exit
+  (spit f "")
+  (doall
+   (map
+    #(spit f (str "https://www.youtube.com/watch?v=" % ",\n") :append true)
+    id-set))
+  :done)
 
+(spit "strength-camp-video-ids" @elliot-vids)
 

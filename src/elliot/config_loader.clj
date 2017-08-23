@@ -3,7 +3,3 @@
 
 
 (def all (edn/read-string (slurp "resources/config.edn")))
-
-(def srt-source-folders (all :srt-source-folders))
-
-

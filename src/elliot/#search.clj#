@@ -30,7 +30,7 @@
           :highlight-html
           (map
            (fn [result]
-             (first
+             (
               (:viewable_words_t
                (get (:highlights query-response)
                     (keyword (:id result))))))
