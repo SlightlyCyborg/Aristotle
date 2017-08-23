@@ -53,7 +53,10 @@
                        (fn [{highlight :highlight
                              start-time :start-time
                              stop-time :stop-time}]
-                         [:p (str start-time " - " stop-time)]
-                         [:p (str "\"" highlight \")])
+                         [:div {:class "block-div"}
+                          (str start-time " - " stop-time)
+                          "<br>"
+                          (str "\"" highlight \")]
+                         )
                        (:blocks doc))))]]]])
              (query-result-struct :docs)))))

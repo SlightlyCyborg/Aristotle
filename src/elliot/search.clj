@@ -20,6 +20,7 @@
                    " AND video_id_s:\""
                    (doc :id)
                    "\"")
+           :sort "start_time_s asc"
            :hl "on"
            :hl-fl "viewable_words_t"}))
 
@@ -27,13 +28,17 @@
 (defn get-blocks [query-struct doc]
   (let [query-response (query-solr-for-blocks query-struct doc)]
    (assoc doc
-          :highlight-html
+          :blocks
           (map
            (fn [result]
-             (first
-              (:viewable_words_t
-               (get (:highlights query-response)
-                    (keyword (:id result))))))
+             {:highlight
+              (first
+               (:viewable_words_t
+                (get (:highlights query-response)
+                     (keyword (:id result)))))
+
+              :start-time (:start_time_s result)
+              :stop-time (:stop_time_s result)})
            (:docs query-response)))))
 
 (defn go [query-struct]
