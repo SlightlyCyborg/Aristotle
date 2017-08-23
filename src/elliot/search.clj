@@ -42,7 +42,13 @@
            (:docs query-response)))))
 
 (defn go [query-struct]
-  (let [rv (mapply solr/query connection query-struct)]
+  (let [rv (mapply solr/query connection (assoc query-struct
+                                                :q
+                                                (str
+                                                 "title_t:\""
+                                                 (:q query-struct)
+                                                 "\""
+                                                 (:q query-struct))))]
     (assoc
      rv
      :docs

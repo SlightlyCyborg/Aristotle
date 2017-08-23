@@ -32,6 +32,14 @@
      :thumbnail_s  "https://i.ytimg.com/vi/JJaVbJUvlys/sddefault.jpg"
      :_version_ 1576457240885329920}]})
 
+(defn parse-search-time [search-time]
+  (reduce
+   str
+   (map
+    #(str %2 %1)
+    ["h" "m" "s"]
+    (clojure.string/split search-time #":"))))
+
 (defn render [query-result-struct]
   ;(p/pprint query-result-struct)
   (into [] (concat
@@ -44,7 +52,9 @@
                  [:div {:class "search-result-title col"}
                   [:div {:class "container"}
                    [:div {:class "row"}
-                    [:h3 (first (:title_t doc))]]
+                    [:a {:href (str "https://www.youtube.com/watch?v="
+                                    (:id doc))}
+                     [:h3 (first (:title_t doc))]]]
                    [:div {:class "row"}
                     (into []
                      (cons
@@ -54,7 +64,13 @@
                              start-time :start-time
                              stop-time :stop-time}]
                          [:div {:class "block-div"}
-                          (str start-time " - " stop-time)
+                          [:a
+                           {:href (str "https://youtu.be/"
+                                       (:id doc)
+                                       "?t="
+                                       (parse-search-time
+                                        start-time))}
+                           (str start-time " - " stop-time)]
                           "<br>"
                           (str "\"" highlight \")]
                          )

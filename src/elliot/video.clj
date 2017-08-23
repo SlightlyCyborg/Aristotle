@@ -221,7 +221,7 @@
                    uploaded :publishedAt
                    title :title
                    channel-title :channelTitle
-                   {thumbnail :standard} :thumbnails}
+                   {thumbnail :standard alt-thumbnail :default} :thumbnails}
                   :snippet
 
                   {views :viewCount
@@ -234,7 +234,9 @@
                      ::channel-title channel-title
                      ::views (parse-int views)
                      ::likes (parse-int likes)
-                     ::thumbnail (:url thumbnail)))
+                     ::thumbnail (if-let [url (:url thumbnail)]
+                                   url
+                                   (:url alt-thumbnail))))
             videos)))
 
 (s/def ::id            string?)
@@ -303,10 +305,11 @@
       get-all-subtitle-file-objs
       video-ids
       (map #(assoc % ::caption (load-caption (:caption-file %))))
-      (partition 5)
+      (partition 10)
       (map #(get-video-attrs %))
       ;(map #(map make-index-block-struct %))
       ;(map #(map make-index-struct %))
-      ;(map #(index %))
-      (map #(index-blocks %))))
+      (map #(index %))
+      ;(map #(index-blocks %))
+      ))
 

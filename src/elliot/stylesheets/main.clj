@@ -17,6 +17,7 @@
 
 (def search-results
   [[:#results-div
+    [:a {:color "#0074D9"}]
     [:em {:font-weight "bold"}]
     [:img {:height "90px"}]
     ;;[:ul {:list-style-type "none"}]
