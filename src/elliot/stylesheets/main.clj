@@ -28,7 +28,9 @@
    [:.search-result-row
     {:margin-top "20px"}]
    [:.search-term
-    {:font-weight "bold"}]])
+    {:font-weight "bold"}]
+   [:.block-div
+    {:margin-top "10px"}]])
 
 (defn render []
   (apply css
