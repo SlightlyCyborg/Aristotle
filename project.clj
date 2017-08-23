@@ -17,6 +17,7 @@
                  [korma "0.4.0"]
                  [org.xerial/sqlite-jdbc "3.7.15-M1"]
                  [pegasus "0.7.0"]
-                 [clj-solr "1.0"]])
+                 [clj-solr "1.0"]]
+  :main elliot.server)
 
 
