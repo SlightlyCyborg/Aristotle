@@ -300,16 +300,17 @@
       video-structs)))
    (#(println (solr/add-docs block-connection %)))))
 
-(def all-videos
-  (->> srt-source-folders
-      get-all-subtitle-file-objs
-      video-ids
-      (map #(assoc % ::caption (load-caption (:caption-file %))))
-      (partition 10)
-      (map #(get-video-attrs %))
-      ;(map #(map make-index-block-struct %))
-      ;(map #(map make-index-struct %))
-      (map #(index %))
-      ;(map #(index-blocks %))
-      ))
+(if false
+ (def all-videos
+   (->> srt-source-folders
+        get-all-subtitle-file-objs
+        video-ids
+        (map #(assoc % ::caption (load-caption (:caption-file %))))
+        (partition 10)
+        (map #(get-video-attrs %))
+                                        ;(map #(map make-index-block-struct %))
+                                        ;(map #(map make-index-struct %))
+        (map #(index %))
+                                        ;(map #(index-blocks %))
+        )))
 

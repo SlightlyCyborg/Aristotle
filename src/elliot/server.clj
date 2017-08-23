@@ -1,5 +1,6 @@
 (ns elliot.server
-  (:require [elliot.templates.home :as home])
+  (:require [elliot.templates.home :as home]
+            [elliot.templates.search :as search-template])
   (:use [compojure.route :only [files not-found]]
         [compojure.handler :only [site]] 
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
