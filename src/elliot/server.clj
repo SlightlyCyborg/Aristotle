@@ -14,8 +14,9 @@
   [query]
   (search-template/render (search/go query)))
 
-(defn home-route [{{terms "terms"} :params}]
-  (println terms)
+(defn home-route
+  "Returns the full html page with search results included"
+  [{{terms "terms"} :params}]
   {:status 200
    :body  (home/render (search {:q terms}))})
 
