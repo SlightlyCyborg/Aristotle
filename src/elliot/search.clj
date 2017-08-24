@@ -6,6 +6,7 @@
 
 (def connection (:solr-connection config/all))
 (def block-connection (:solr-block-connection config/all))
+(def field-to-display-and-highlight :viewable_words_t)
 
 (defn query-solr-for-blocks
   "Takes a query struct and a doc and then searches video blocks for the blocks in which the query occurs in the particular video"
@@ -19,13 +20,14 @@
             "\"")
     :sort "start_time_s asc"
     :hl "on"
-    :hl-fl "viewable_words_t"}))
+    :hl-fl (name field-to-display-and-highlight)}))
+
 
 (defn extract-data-from-block-query-response
   [highlights block-query-response]
   {:highlight
    (first
-    (:viewable_words_t
+    (field-to-display-and-highlight
      (get highlights 
           (keyword (:id block-query-response)))))
 
