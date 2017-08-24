@@ -1,10 +1,9 @@
 (ns elliot.server
+  "The main entry point into the program. Starts the project server."
   (:require [elliot.templates.home :as home]
-            [elliot.templates.search :as search-template])
-  (:use [compojure.route :only [files not-found]]
-        [compojure.handler :only [site]] 
-        [compojure.core :only [defroutes GET POST DELETE ANY context]]
-        [elliot.search :as search]
+            [elliot.templates.search :as search-template]
+            [elliot.search :as search])
+  (:use [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server
         ring.middleware.params
         ring.middleware.resource))
