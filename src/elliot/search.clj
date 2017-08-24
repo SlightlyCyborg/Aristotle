@@ -7,10 +7,6 @@
 (def connection (:solr-connection config/all))
 (def block-connection (:solr-block-connection config/all))
 
-(defn process-highlights [response]
-  (println (response :highlights))
-  response)
-
 (defn query-solr-for-blocks [query-struct doc]
   (common/mapply
    solr/query block-connection
