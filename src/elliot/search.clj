@@ -7,13 +7,15 @@
 (def connection (:solr-connection config/all))
 (def block-connection (:solr-block-connection config/all))
 
-(defn query-solr-for-blocks [query-struct doc]
+(defn query-solr-for-blocks
+  "Takes a query struct and a doc and then searches video blocks for the blocks in which the query occurs in the particular video"
+  [query-struct video-doc]
   (common/mapply
    solr/query block-connection
    {:q (str "captions_t:"
             (:q query-struct)
             " AND video_id_s:\""
-            (doc :id)
+            (video-doc :id)
             "\"")
     :sort "start_time_s asc"
     :hl "on"
