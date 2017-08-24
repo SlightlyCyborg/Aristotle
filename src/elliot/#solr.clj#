@@ -1,3 +1,0 @@
-(ns elliot.solr
-  (:require [org.httpkit.client :as http]))
-

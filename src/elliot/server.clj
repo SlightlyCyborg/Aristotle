@@ -14,22 +14,13 @@
                             (search/go query)
                             {:docs []})))
 
-(defn example-search []
-  (search-template/render search-template/mockup-data))
-
 (defn home-route [{{terms "terms"} :params}]
   (println terms)
   {:status 200
    :body  (home/render (search {:q terms}))})
 
-(defn example-route [req]
-  {:status 200
-   :body (home/render (example-search))})
-
-
 (defroutes all-routes
-  (GET "/" [] home-route)
-  (GET "/example" [] example-route))
+  (GET "/" [] home-route))
 
 (def app
   (->  all-routes
