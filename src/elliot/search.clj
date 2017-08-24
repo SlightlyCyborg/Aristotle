@@ -1,28 +1,27 @@
 (ns elliot.search
   (:require [clj-solr.core :as solr]
             [clojure.spec.alpha :as s]
-            [elliot.config-loader :as config]))
+            [elliot.config-loader :as config]
+            [elliot.common-fns :as common]))
 
 (def connection (:solr-connection config/all))
 (def block-connection (:solr-block-connection config/all))
-
-(defn mapply [f & args]
-  (apply f (apply concat (butlast args) (last args))))
 
 (defn process-highlights [response]
   (println (response :highlights))
   response)
 
 (defn query-solr-for-blocks [query-struct doc]
-  (mapply solr/query block-connection
-          {:q (str "captions_t:"
-                   (:q query-struct)
-                   " AND video_id_s:\""
-                   (doc :id)
-                   "\"")
-           :sort "start_time_s asc"
-           :hl "on"
-           :hl-fl "viewable_words_t"}))
+  (common/mapply
+   solr/query block-connection
+   {:q (str "captions_t:"
+            (:q query-struct)
+            " AND video_id_s:\""
+            (doc :id)
+            "\"")
+    :sort "start_time_s asc"
+    :hl "on"
+    :hl-fl "viewable_words_t"}))
 
 
 (defn get-blocks [query-struct doc]
@@ -47,13 +46,14 @@
     {:docs []}
 
     ;;Do an actual query
-    (let [rv (mapply solr/query connection (assoc query-struct
-                                                  :q
-                                                  (str
-                                                   "title_t:\""
-                                                   (:q query-struct)
-                                                   "\""
-                                                   (:q query-struct))))]
+    (let [rv (common/mapply
+              solr/query connection (assoc query-struct
+                                           :q
+                                           (str
+                                            "title_t:\""
+                                            (:q query-struct)
+                                            "\""
+                                            (:q query-struct))))]
       (assoc
        rv
        :docs
