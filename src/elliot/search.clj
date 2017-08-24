@@ -21,22 +21,34 @@
     :hl "on"
     :hl-fl "viewable_words_t"}))
 
+(defn extract-data-from-block-query-response
+  [highlights block-query-response]
+  {:highlight
+   (first
+    (:viewable_words_t
+     (get highlights 
+          (keyword (:id block-query-response)))))
+
+   :start-time (:start_time_s block-query-response)
+   :stop-time (:stop_time_s block-query-response)})
 
 (defn get-blocks [query-struct doc]
   (let [query-response (query-solr-for-blocks query-struct doc)]
    (assoc doc
           :blocks
           (map
-           (fn [result]
-             {:highlight
-              (first
-               (:viewable_words_t
-                (get (:highlights query-response)
-                     (keyword (:id result)))))
-
-              :start-time (:start_time_s result)
-              :stop-time (:stop_time_s result)})
+           (partial extract-data-from-block-query-response
+                    (:highlights query-response))
            (:docs query-response)))))
+
+(defn improve-query [stock-query]
+  (assoc stock-query
+         :q
+         (str
+          "title_t:\""
+          (:q stock-query)
+          "\""
+          (:q stock-query))))
 
 (defn go [query-struct]
   (if (nil? (query-struct :q))
@@ -45,13 +57,7 @@
 
     ;;Do an actual query
     (let [rv (common/mapply
-              solr/query connection (assoc query-struct
-                                           :q
-                                           (str
-                                            "title_t:\""
-                                            (:q query-struct)
-                                            "\""
-                                            (:q query-struct))))]
+              solr/query connection (improve-query query-struct))]
       (assoc
        rv
        :docs
