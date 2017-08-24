@@ -9,10 +9,10 @@
         ring.middleware.params
         ring.middleware.resource))
 
-(defn search [query]
-  (search-template/render (if (not (nil? (query :q)))
-                            (search/go query)
-                            {:docs []})))
+(defn search
+  "Takes a query and returns the search hiccup/html component data"
+  [query]
+  (search-template/render (search/go query)))
 
 (defn home-route [{{terms "terms"} :params}]
   (println terms)

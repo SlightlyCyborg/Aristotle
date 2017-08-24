@@ -42,16 +42,21 @@
            (:docs query-response)))))
 
 (defn go [query-struct]
-  (let [rv (mapply solr/query connection (assoc query-struct
-                                                :q
-                                                (str
-                                                 "title_t:\""
-                                                 (:q query-struct)
-                                                 "\""
-                                                 (:q query-struct))))]
-    (assoc
-     rv
-     :docs
-     (map
-      (partial get-blocks query-struct)
-      (:docs rv)))))
+  (if (nil? (query-struct :q))
+    ;;Don't bother querying, it is an empty query
+    {:docs []}
+
+    ;;Do an actual query
+    (let [rv (mapply solr/query connection (assoc query-struct
+                                                  :q
+                                                  (str
+                                                   "title_t:\""
+                                                   (:q query-struct)
+                                                   "\""
+                                                   (:q query-struct))))]
+      (assoc
+       rv
+       :docs
+       (map
+        (partial get-blocks query-struct)
+        (:docs rv))))))
