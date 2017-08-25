@@ -18,11 +18,15 @@
 (s/def ::block (s/keys :req [::block-id ::words]))
 (s/def ::blocks (s/coll-of ::block))
 
-(defn parse-int [s]
+(defn parse-int
+  "Takes a string and parses out an integer using the regex \\d+."
+  [s]
   (try (Integer. (re-find  #"\d+" s ))
        (catch Exception e 0)))
 
-(defn parse-block-time [block-time-text]
+(defn parse-block-time
+  "Converts the time block in the .srt file and turns it into a data structure"
+  [block-time-text]
   (->> block-time-text
         (#(clojure.string/split % #" --> "))
        (map #(clojure.string/split % #"[:,]"))
@@ -32,7 +36,9 @@
        (interleave [:start :stop])
        (apply hash-map)))
 
-(defn time-struct->string [{h :hour m :minute s :second mi :millis}]
+(defn time-struct->string
+  "Takes the time-struct and turns it into a colon seperated string"
+  [{h :hour m :minute s :second mi :millis}]
   (str h ":" m ":" s ":" mi))
 
 (deftest test-parse-block-time
@@ -42,7 +48,9 @@
          {:start {:hour 0 :second 1 :millis 670 :minute 5}
           :stop  {:hour 0 :second 6 :millis 970 :minute 5}}))))
 
-(defn load-caption-blocks [f]
+(defn load-caption-blocks
+  "Takes an srt file and assocs in ::block-id ::words ::time"
+  [f]
   (-> (slurp f)
       (clojure.string/replace #"<[^>]+>" "")
       (clojure.string/split #"\r\n\r\n")
@@ -54,7 +62,9 @@
 (deftest video-make
   (println (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")))
 
-(defn de-blockify [video key]
+(defn de-blockify
+  "Makes a single list from a key in blocks"
+  [video key]
   (reduce
    #(concat %1 (key %2))
    [] 
