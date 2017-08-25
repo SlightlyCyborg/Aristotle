@@ -15,11 +15,10 @@
 ;;Youtube Access Constants
 (def client-secret "XG5G89jCPt-L__-y1C3Vd3Eb")
 (def youtube-key "AIzaSyARW-Zw7E34dS9jvTWYYXI-532ST9VXfGk" )
-(def es-u-name "elliottsaidwhat")
-(def strength-camp-u-name "strengthcamp")
+(def channel-name "stefbot")
 (def batch-size 50)
 (def next-page-token (atom {}))
-(def elliot-vids (atom (read-string (slurp "video_ids"))))
+(def vids (atom #{}))
 
 
 (defn response->clj [response]
@@ -57,7 +56,7 @@
 
   
    (while (not (= :no-more-pages (get @next-page-token playlist-id))) 
-     (swap! elliot-vids (partial apply conj) (playlist-id->single-page-video-ids playlist-id))
+     (swap! vids (partial apply conj) (playlist-id->single-page-video-ids playlist-id))
      (Thread/sleep 15)))
 
 (defn get-channel-uploads-playlist-id [username]
@@ -68,9 +67,25 @@
       response->clj
       (get-in ["items" 0 "contentDetails" "relatedPlaylists" "uploads"])))
 
-(def elliot-playlist-id (get-channel-uploads-playlist-id es-u-name))
+(def playlist-id (get-channel-uploads-playlist-id channel-name))
 
-(defn get-all-of-elliots-videos [] (playlist-id->video-ids elliot-playlist-id))
+(defn get-all-uploads [] (playlist-id->video-ids playlist-id))
+
+(defn spit-id-urls [ids]
+  (->> (into [] ids)
+      (partition 500)
+      (map-indexed
+       (fn [index batch]
+         (spit 
+          (str "urls" index ".txt")
+          (reduce
+           (fn [str-val id]
+             (str str-val "https://www.youtube.com/watch?v=" id ",\n"))
+           ""
+           batch))))))
+
+(defn load-video-id-file []
+  (read-string (slurp "video_ids")))
 
 
 (defn video-id->caption-id [video-id]
