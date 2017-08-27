@@ -59,9 +59,6 @@
                           ::words (nth % 2)
                           ::time (parse-block-time (second %))})))))
 
-(deftest video-make
-  (println (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")))
-
 (defn de-blockify
   "Makes a single list from a key in blocks"
   [video key]
@@ -105,24 +102,6 @@
 
 
 
-  ;;Tests
-(deftest test-blockify
-  (let [control
-        (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
-
-   (is (thrown? Exception
-                (blockify-list
-                 (cons :foo (de-blockify control ::words))
-                 control
-                 ::words)))
-   (let [blocked (blockify-list (de-blockify control ::words)
-                           control
-                           ::words)]
-    (dotimes [x 4]
-      (let [rand-ind (rand-int (count control))]
-        (is (= (into [] (::words (nth control rand-ind)))
-               (nth blocked rand-ind))))))))
-
 (defn assoc-viewable-words
   "Adds :viewable-words to block which adds pre and post blocks to the words"
   [caption-blocks]
@@ -154,10 +133,6 @@
     video
     ::words)))
 
-(deftest test-add-pos
-  (let [vid (make "resources/subs/elliot_hulse/p2zvOJe1Iq4_0_en.srt")]
-    (println (add-pos vid))))
-
 (def into-string-array (partial into-array String))
 
 (defn add-lemmas
@@ -178,12 +153,6 @@
         (fn [block lemmas] (assoc block :lemmas lemmas))
         video))))
 
-
-(deftest test-add-lemmas
-  (let [vid (make "resources/subs/elliot_hulse/EoyDLWsczgU_0_en.srt")]
-   (is (thrown? Exception
-                (add-lemmas vid)))
-   (pprint (add-lemmas (add-pos vid)))))
 
 (def srt-source-folders (config/all :srt-source-folders))
 
@@ -206,14 +175,6 @@
        (map #(.getName %))
        (map #(subs % 0 11))
        (map #(assoc %1 ::id %2) subtitle-files)))
-
-(def ids-with-subtitles (subtitle-files->ids all-subtitle-files))
-
-(defn load [id]
-  (let [caption (make (str "resources/subs/" id "_0_en.srt"))]
-    caption))
-
-(def youtube-creds (config/all :youtube-credentials))
 
 (defn get-video-attrs [videos]
 
@@ -303,24 +264,38 @@
 
 (defn index-blocks [video-structs]
   (->>
-   (doall
-    (flatten
+   (flatten
+    (doall
      (mapv
       make-index-block-struct
       video-structs)))
-   (#(println (solr/add-docs block-connection %)))))
+   (partition 500)
+   (map #(println (solr/add-docs block-connection %)))))
 
-(if false
- (def all-videos
+(defn index-all-videos []
+  (doall
    (->> srt-source-folders
         get-all-subtitle-file-objs
         video-ids
         (map #(assoc % ::caption (load-caption (:caption-file %))))
         (partition 10)
         (map #(get-video-attrs %))
-                                        ;(map #(map make-index-block-struct %))
-                                        ;(map #(map make-index-struct %))
+        ;;(map #(map make-index-block-struct %))
+        ;;(map #(map make-index-struct %))
         (map #(index %))
-                                        ;(map #(index-blocks %))
+        ;;(map #(index-blocks %))`
         )))
+
+(defn index-all-video-blocks []
+   (->> srt-source-folders
+        get-all-subtitle-file-objs
+        video-ids
+        (map #(assoc % ::caption (load-caption (:caption-file %))))
+        (partition 10)
+        (map #(get-video-attrs %))
+        ;;(mapv #(mapv make-index-block-struct %))
+        ;;(map #(map make-index-struct %))
+        ;(map #(index %))
+        (map #(index-blocks %))
+        ))
 
