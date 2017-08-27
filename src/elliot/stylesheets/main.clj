@@ -12,7 +12,8 @@
    [:.search-div {:position "relative"}]
    [:.search-div-contents {:position "absolute"
                            :bottom 0
-                           :width "60%"}]])
+                           :width "60%"}]
+   [:#daemon-img {:height "140px"}]])
 
 
 (def search-results
