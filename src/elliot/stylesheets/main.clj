@@ -11,7 +11,8 @@
    [:.search-header {}]
    [:.search-div {:position "relative"}]
    [:.search-div-contents {:position "absolute"
-                           :bottom 0
+                           :bottom -17
+                           :left 20 
                            :width "60%"}]
    [:#daemon-img {:height "140px"}]])
 

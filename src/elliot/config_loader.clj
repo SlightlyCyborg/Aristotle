@@ -2,4 +2,8 @@
   (:require [clojure.edn :as edn]))
 
 
-(def all (edn/read-string (slurp "resources/config.edn")))
+
+(defn reload []
+  (def all (edn/read-string (slurp "resources/config.edn"))))
+
+(reload)

@@ -4,7 +4,8 @@
             [org.httpkit.client :as http]
             [cheshire.core :refer :all]
             [clojure.pprint :refer [pprint]]
-            [compojure.core :only [defroutes GET POST DELETE ANY context]])
+            [compojure.core :only [defroutes GET POST DELETE ANY context]]
+            [elliot.config-loader :as config])
   (:use org.httpkit.server
         ring.middleware.params))
 
@@ -67,22 +68,36 @@
       response->clj
       (get-in ["items" 0 "contentDetails" "relatedPlaylists" "uploads"])))
 
-(def playlist-id (get-channel-uploads-playlist-id channel-name))
+(def playlist-id (get-channel-uploads-playlist-id (config/all :youtube-channel)))
 
 (defn get-all-uploads [] (playlist-id->video-ids playlist-id))
 
+
+
 (defn spit-id-urls [ids]
-  (->> (into [] ids)
-      (partition 500)
-      (map-indexed
-       (fn [index batch]
-         (spit 
-          (str "urls" index ".txt")
-          (reduce
-           (fn [str-val id]
-             (str str-val "https://www.youtube.com/watch?v=" id ",\n"))
-           ""
-           batch))))))
+  ;;Write out urls
+  (let [url-root (str "resources/video_ids/" (config/all :daemon-name) "/")]
+   (clojure.java.io/make-parents
+    (str url-root "urls"))
+   (->> (into [] ids)
+        (partition 00 1 nil)
+        (#(doall
+           (map-indexed
+            (fn [index batch]
+              (spit 
+               (str
+                "resources/video_ids/"
+                (config/all :daemon-name)
+                "/"
+                "urls"
+                index
+                ".txt")
+               (reduce
+                (fn [str-val id]
+                  (str str-val "https://www.youtube.com/watch?v=" id ",\n"))
+                ""
+                batch)))
+            %))))))
 
 (defn load-video-id-file []
   (read-string (slurp "video_ids")))
@@ -104,4 +119,58 @@
 
 
 
+(defn write-channel-video-urls []
+ (get-all-uploads)
+ (spit-id-urls @vids))
 
+(defn get-all-subtitle-file-objs [srt-source-folders]
+  (flatten
+   (map
+    (fn [subtitle-folder]
+      (->> (clojure.java.io/file subtitle-folder)
+          file-seq
+          (filter #(.isFile %))
+          (map (fn [file] {:caption-file file}))))
+    srt-source-folders)))
+
+(defn is-english-sub? [sub]
+  (not (nil? (re-matches #".+_en\..+" sub))))
+
+(defn get-id [item]
+  (subs item 0 11))
+
+(defn parse-number
+  "Reads a number from a string. Returns nil if not a number."
+  [s]
+  (if (re-find #"^-?\d+\.?\d*$" s)
+    (read-string s)))
+
+
+(defn get-version [item]
+  (parse-number (subs item 12 13)))
+
+(defn get-last-srt-version [tmp-data item]
+  (let [id (get-id item)
+        version (get-version item)]
+    (if (< (get-in tmp-data [id :version] -1)
+           version)
+      (assoc tmp-data id {:version version :file item})
+      tmp-data)))
+
+
+(defn gen-captions-to-delete []
+  (let [file (->>
+              (config/all :srt-source-folders)
+              get-all-subtitle-file-objs
+              (map #(.getName (:caption-file %))))]
+   (->>
+    file
+    (filter is-english-sub?)
+    (reduce get-last-srt-version {})
+    (map #(:file (second %)))
+    (set)
+    (clojure.set/difference (set file))
+    (reduce (fn [s f] (str s " ./" f)) "")
+    (#(spit (str (first (config/all :srt-source-folders))
+                 "/rm-script.sh")
+            (str "rm " %))))))
