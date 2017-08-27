@@ -25,6 +25,7 @@
 
 (defn extract-data-from-block-query-response
   [highlights block-query-response]
+  ;;(println (get highlights (keyword (:id block-query-response))))
   {:highlight
    (first
     (field-to-display-and-highlight
@@ -43,14 +44,23 @@
                     (:highlights query-response))
            (:docs query-response)))))
 
+(defn print-n-return [thing]
+  (println thing)
+  thing)
+
 (defn improve-query [stock-query]
   (assoc stock-query
          :q
-         (str
-          "title_t:\""
-          (:q stock-query)
-          "\""
-          (:q stock-query))))
+         (print-n-return
+          (str
+           "title_t:\""
+           (:q stock-query)
+           "\"^10 "
+           (:q stock-query)
+           " \""
+           (:q stock-query)
+           "\"~10000^5"
+           ))))
 
 (defn go [query-struct]
   (if (nil? (query-struct :q))
