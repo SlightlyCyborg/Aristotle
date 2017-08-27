@@ -91,11 +91,19 @@
 (defn index-docs []
   (put-output "Double check that the settings in config are correct\nIncorrect settings could mess up other indicies")
   (wait-on-user)
-  (index-all-videos)
+  (v/index-all-videos)
+  (v/index-all-video-blocks)
   (put-output "Finished indexing!"))
+
+(defn transfer-non-git-files []
+  (put-output "scp over the following files:")
+  (put-output "   resources/public/imgs/daemon_img.png")
+  (put-output "   resources/config.edn"))
+
 
 (defn start []
   (create-daemon-img)
   (edit-config)
   (create-solr-cores)
-  (get-captions))
+  (get-captions)
+  (transfer-non-git-files))
