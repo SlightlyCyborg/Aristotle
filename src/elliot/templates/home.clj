@@ -20,7 +20,7 @@
           [:img {:src "imgs/daemon_img.png" :id "daemon-img"}]]]
         [:div {:class "search-div col"}
          [:div {:class "search-div-contents"}
-          [:h1 (str "Hey " (config/all :daemon-name) "....")]
+          [:h1 (config/all :headline)]
           [:form {:method "GET"}
            [:div {:class "form-group"}
             [:input {:type "text"
