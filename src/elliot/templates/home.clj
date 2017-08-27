@@ -1,6 +1,7 @@
 (ns elliot.templates.home
   (:require [garden.core :refer [css]]
-            [elliot.stylesheets.main :as style])
+            [elliot.stylesheets.main :as style]
+            [elliot.config-loader :as config])
   (:use hiccup.core))
 
 (defn render [search-component]
@@ -15,16 +16,17 @@
       [:div {:class "container" :id "search-container"}
        [:div {:class "row search-header"}
         [:div {:class "col-2"}
-         [:img {:src "imgs/small_elliot.png" :id "elliot-thumb"}]]
+         [:a {:href "/"}
+          [:img {:src "imgs/daemon_img.png" :id "daemon-img"}]]]
         [:div {:class "search-div col"}
          [:div {:class "search-div-contents"}
-          [:h1 "Yo Elliot...."]
+          [:h1 (str "Hey " (config/all :daemon-name) "....")]
           [:form {:method "GET"}
            [:div {:class "form-group"}
             [:input {:type "text"
                      :name "terms"
                      :class "form-control"
                      :id "search"
-                     :placeholder "...ask Elliot a question or search for wisdom"}]]]]]]
+                     :placeholder (str "...ask " (config/all :daemon-name) " a question or search for wisdom")}]]]]]]
         [:div {:id "results-div"}
          search-component]]]]))
