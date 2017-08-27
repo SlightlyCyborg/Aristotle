@@ -2,7 +2,8 @@
   "The main entry point into the program. Starts the project server."
   (:require [elliot.templates.home :as home]
             [elliot.templates.search :as search-template]
-            [elliot.search :as search])
+            [elliot.search :as search]
+            [elliot.config-loader :as config])
   (:use [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server
         ring.middleware.params
@@ -43,4 +44,4 @@
   [& args]
   (if (not (nil? @server))
     (stop-server))
-  (reset! server (run-server #'app {:port 8080})))
+  (reset! server (run-server #'app {:port (config/all :port)})))
