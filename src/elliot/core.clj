@@ -58,7 +58,7 @@
 (defn edit-config []
   (put-output "Open up resources/config.edn")
   (wait-on-user)
-  (put-output "Edit the config options including:\n:solr-connection\n:solr-block-connection\n:daemon-name\n:youtube-channel\n:headline")
+  (put-output "Edit the config options including:\n:solr-connection\n:solr-block-connection\n:daemon-name\n:youtube-channel\n:headline\n:srt-source-folders")
   (wait-on-user)
   (put-output (str "Edit the :port to be " (+ 1 (config/all :port))))
   (wait-on-user)

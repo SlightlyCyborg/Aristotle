@@ -163,14 +163,13 @@
               (config/all :srt-source-folders)
               get-all-subtitle-file-objs
               (map #(.getName (:caption-file %))))]
-   (->>
-    file
-    (filter is-english-sub?)
-    (reduce get-last-srt-version {})
-    (map #(:file (second %)))
-    (set)
-    (clojure.set/difference (set file))
-    (reduce (fn [s f] (str s " ./" f)) "")
-    (#(spit (str (first (config/all :srt-source-folders))
-                 "/rm-script.sh")
-            (str "rm " %))))))
+    (->>
+     file
+     (filter is-english-sub?)
+     (reduce get-last-srt-version {})
+     (map #(:file (second %)))
+     (set)
+     (clojure.set/difference (set file))
+     (reduce (fn [s f] (str s " ./" f)) "")
+     ;;;(#(spit (str (first (config/all :srt-source-folders)) "/rm-script.sh") (str "rm " %)))
+     ))) 
