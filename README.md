@@ -8,7 +8,7 @@ A search engine that indexes humans
 ![Aristotle](small_aristotle.jpg)
 
 ## Instances deployed
-- elliott.daemon.life
-- molyneux.daemon.life
-- peterson.daemon.life
-- valuetainment.daemon.life
+- [elliott.daemon.life](http://elliott.daemon.life)
+- [molyneux.daemon.life](http://molyneux.daemon.life)
+- [peterson.daemon.life](http://peterson.daemon.life)
+- [valuetainment.daemon.life](http://valuetainment.daemon.life)
