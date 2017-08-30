@@ -1,7 +1,7 @@
-(ns elliot.videos
-  (:require [elliot.video :as video]))
+(ns aristotle.videos
+  (:require [aristotle.video :as video]))
 
-(def subtitle-folder "resources/subs/elliot_hulse/")
+(def subtitle-folder "resources/subs/aristotle_hulse/")
 
 (defn get-available-subtitle-files []
   (-> (clojure.java.io/file subtitle-folder)

@@ -1,8 +1,8 @@
-(ns elliot.core
-  (:require [elliot.config-loader :as config]
-            [elliot.server :as server]
-            [elliot.youtube-captions-downloader :as yt]
-            [elliot.video :as v]))
+(ns aristotle.core
+  (:require [aristotle.config-loader :as config]
+            [aristotle.server :as server]
+            [aristotle.youtube-captions-downloader :as yt]
+            [aristotle.video :as v]))
 
 (defn parse-number
   "Reads a number from a string. Returns nil if not a number."
@@ -106,4 +106,5 @@
   (edit-config)
   (create-solr-cores)
   (get-captions)
+  (index-docs)
   (transfer-non-git-files))

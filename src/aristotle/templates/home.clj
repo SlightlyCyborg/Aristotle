@@ -1,7 +1,7 @@
-(ns elliot.templates.home
+(ns aristotle.templates.home
   (:require [garden.core :refer [css]]
-            [elliot.stylesheets.main :as style]
-            [elliot.config-loader :as config])
+            [aristotle.stylesheets.main :as style]
+            [aristotle.config-loader :as config])
   (:use hiccup.core))
 
 (defn render [search-component]

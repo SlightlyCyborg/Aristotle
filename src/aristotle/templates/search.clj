@@ -1,4 +1,4 @@
-(ns elliot.templates.search
+(ns aristotle.templates.search
   (:require [garden.core :refer [css]]
             [clojure.pprint :as p]
             [ring.util.request :refer [request-url]])

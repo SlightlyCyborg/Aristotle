@@ -1,4 +1,4 @@
-(ns elliot.nlp-utils
+(ns aristotle.nlp-utils
   (:import [opennlp.tools.tokenize WhitespaceTokenizer]
            [opennlp.tools.postag POSTaggerME POSModel]
            [opennlp.tools.lemmatizer DictionaryLemmatizer]

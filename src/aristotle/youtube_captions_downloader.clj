@@ -1,11 +1,11 @@
-(ns elliot.youtube-captions-downloader
+(ns aristotle.youtube-captions-downloader
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [org.httpkit.client :as http]
             [cheshire.core :refer :all]
             [clojure.pprint :refer [pprint]]
             [compojure.core :only [defroutes GET POST DELETE ANY context]]
-            [elliot.config-loader :as config])
+            [aristotle.config-loader :as config])
   (:use org.httpkit.server
         ring.middleware.params))
 
@@ -23,6 +23,7 @@
 
 
 (defn response->clj [response]
+  (println response)
   (parse-string (:body response)))
 
 (defn save-page-token [data playlist-id]
@@ -60,13 +61,23 @@
      (swap! vids (partial apply conj) (playlist-id->single-page-video-ids playlist-id))
      (Thread/sleep 15)))
 
-(defn get-channel-uploads-playlist-id [username]
+(defn get-channel-uploads-playlist-id [id]
+  (-> @(http/get "https://www.googleapis.com/youtube/v3/channels"
+              {:query-params {:part "contentDetails"
+                              :id id 
+                              :key youtube-key}})
+      response->clj
+      (get-in ["items" 0 "contentDetails" "relatedPlaylists" "uploads"])))
+
+(defn get-user-uploads-playlist-id [username]
   (-> @(http/get "https://www.googleapis.com/youtube/v3/channels"
               {:query-params {:part "contentDetails"
                               :forUsername username
                               :key youtube-key}})
       response->clj
       (get-in ["items" 0 "contentDetails" "relatedPlaylists" "uploads"])))
+
+
 
 (def playlist-id (get-channel-uploads-playlist-id (config/all :youtube-channel)))
 

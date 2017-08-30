@@ -1,4 +1,4 @@
-(ns elliot.stylesheets.main
+(ns aristotle.stylesheets.main
   (:require [garden.core :refer [css]]))
 
 

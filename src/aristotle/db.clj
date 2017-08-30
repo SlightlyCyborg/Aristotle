@@ -1,8 +1,8 @@
-(ns elliot.db
+(ns aristotle.db
   (:use korma.db
         korma.core))
 
-(defdb db (sqlite3 {:db "elliot.db"}))
+(defdb db (sqlite3 {:db "aristotle.db"}))
 
 (defentity videos)
 

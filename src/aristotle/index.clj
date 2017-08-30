@@ -1,4 +1,4 @@
-(ns elliot.index
+(ns aristotle.index
   (:require [clj-solr.core :as solr]))
 
 

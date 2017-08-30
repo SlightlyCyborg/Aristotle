@@ -1,8 +1,8 @@
-(ns elliot.search
+(ns aristotle.search
   (:require [clj-solr.core :as solr]
             [clojure.spec.alpha :as s]
-            [elliot.config-loader :as config]
-            [elliot.common-fns :as common]))
+            [aristotle.config-loader :as config]
+            [aristotle.common-fns :as common]))
 
 (def connection (:solr-connection config/all))
 (def block-connection (:solr-block-connection config/all))

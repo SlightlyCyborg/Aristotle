@@ -1,4 +1,4 @@
-(ns elliot.config-loader
+(ns aristotle.config-loader
   (:require [clojure.edn :as edn]))
 
 

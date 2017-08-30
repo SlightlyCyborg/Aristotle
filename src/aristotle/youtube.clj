@@ -1,7 +1,7 @@
-(ns elliot.youtube
+(ns aristotle.youtube
   (:require [clj-http.client :as client]
             [cheshire.core :refer :all]
-            [elliot.config-loader :as config]))
+            [aristotle.config-loader :as config]))
 
 (def youtube-creds (config/all :youtube-credentials))
 

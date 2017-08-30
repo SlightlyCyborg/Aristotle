@@ -1,10 +1,10 @@
-(ns elliot.video
+(ns aristotle.video
   (:use clojure.test
         clojure.pprint)
   (:require [clojure.spec.alpha :as s]
-            [elliot.nlp-utils :as nlp-utils]
-            [elliot.config-loader :as config]
-            [elliot.youtube :as youtube]
+            [aristotle.nlp-utils :as nlp-utils]
+            [aristotle.config-loader :as config]
+            [aristotle.youtube :as youtube]
             [clj-http.client :as client]
             [cheshire.core :as json]
             [clj-solr.core :as solr])

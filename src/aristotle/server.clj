@@ -1,9 +1,9 @@
-(ns elliot.server
+(ns aristotle.server
   "The main entry point into the program. Starts the project server."
-  (:require [elliot.templates.home :as home]
-            [elliot.templates.search :as search-template]
-            [elliot.search :as search]
-            [elliot.config-loader :as config])
+  (:require [aristotle.templates.home :as home]
+            [aristotle.templates.search :as search-template]
+            [aristotle.search :as search]
+            [aristotle.config-loader :as config])
   (:use [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server
         ring.middleware.params

@@ -1,17 +1,17 @@
-(ns elliot.blog 
+(ns aristotle.blog 
   (:require [pegasus.core :refer [crawl]]
             [pegasus.dsl :refer :all])
   (:import (java.io StringReader)))
 
 
 
-(def blog-url "http://elliotthulse.com/blog/")
+(def blog-url "http://aristotlethulse.com/blog/")
 
 (defn crawl-blog []
   (crawl {:seeds [blog-url]
           :user-agent "Pegasus web crawler"
           :corpus-size 7000 ;; crawl 20 documents
-          :job-dir "/tmp/elliot-blog-all"
+          :job-dir "/tmp/aristotle-blog-all"
           :extractor
           (defextractors
             (extract :at-selector [:.entry-title :a]

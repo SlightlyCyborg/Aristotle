@@ -1,4 +1,4 @@
-(ns elliot.common-fns)
+(ns aristotle.common-fns)
 
 
 (defn mapply

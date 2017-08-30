@@ -1,5 +1,5 @@
-(ns elliot.data
-  (:require [elliot.videos :as videos]
+(ns aristotle.data
+  (:require [aristotle.videos :as videos]
             [clojure.pprint :refer [pprint]]))
 
 
@@ -11,7 +11,7 @@
 (def all-words (subs-proc/collect-all-words all-subtitles))
 (def unique-words (collect-all-words-into-a-set all-words))
 
-(def elliot-analytics
+(def aristotle-analytics
   {:total-number-of-words-on-camera (count all-words)
    :vocabulary-size (count unique-words)})
 
