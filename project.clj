@@ -1,6 +1,6 @@
-(defproject elliot "1.0.0"
+(defproject aristotle "1.0.0"
   :description "A search engine for Elliot's content"
-  :url "http://elliot.daemon.life"
+  :url "http://aristotle.daemon.life"
   :license {:name "The Daemon License"
             :url "http://daemon.life"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
@@ -18,6 +18,6 @@
                  [org.xerial/sqlite-jdbc "3.7.15-M1"]
                  [pegasus "0.7.0"]
                  [clj-solr "1.2"]]
-  :main elliot.server)
+  :main aristotle.server)
 
 
