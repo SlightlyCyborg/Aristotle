@@ -2,7 +2,6 @@
   (:use clojure.test
         clojure.pprint)
   (:require [clojure.spec.alpha :as s]
-            [aristotle.nlp-utils :as nlp-utils]
             [aristotle.config-loader :as config]
             [aristotle.youtube :as youtube]
             [clj-http.client :as client]
