@@ -33,7 +33,13 @@
    [:.search-term
     {:font-weight "bold"}]
    [:.block-div
-    {:margin-top "10px"}]])
+    {:margin-top "10px"}]
+   [:.search-page-nav
+    {:float "left"}
+    [:h3
+     {:float "left"}]]
+   [:#first-page-headline
+    {:margin-right "15px"}]])
 
 (defn render []
   (apply css

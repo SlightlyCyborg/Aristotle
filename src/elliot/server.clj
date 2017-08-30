@@ -11,14 +11,22 @@
 
 (defn search
   "Takes a query and returns the search hiccup/html component data"
-  [query]
-  (search-template/render (search/go query)))
+  [query page req]
+  (search-template/render (search/go query) (if (nil? page) 1 page) req))
 
 (defn home-route
   "Returns the full html page with search results included"
-  [{{terms "terms"} :params}]
-  {:status 200
-   :body  (home/render (search {:q terms}))})
+  [req]
+  (let [{{terms "terms" page "page"} :params} req]
+    {:status 200
+     :body  (home/render (search {:q terms
+                                  :start (* 10
+                                            (if (nil? page)
+                                              0
+                                              (- (Integer/parseInt page) 1)))}
+                                 (if (nil? page)
+                                   1 (Integer/parseInt page))
+                                 req))}))
 
 (defroutes all-routes
   (GET "/" [] home-route))

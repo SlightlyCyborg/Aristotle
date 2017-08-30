@@ -75,4 +75,6 @@
        :docs
        (map
         (partial get-blocks query-struct)
-        (:docs rv))))))
+        (:docs rv))
+       :num-found
+       (:num-found rv)))))

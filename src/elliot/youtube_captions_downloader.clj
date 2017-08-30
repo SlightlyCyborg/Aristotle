@@ -80,7 +80,7 @@
    (clojure.java.io/make-parents
     (str url-root "urls"))
    (->> (into [] ids)
-        (partition 00 1 nil)
+        (partition 600 600 [nil])
         (#(doall
            (map-indexed
             (fn [index batch]
@@ -94,10 +94,13 @@
                 ".txt")
                (reduce
                 (fn [str-val id]
-                  (str str-val "https://www.youtube.com/watch?v=" id ",\n"))
+                  (if (not (nil? id))
+                    (str str-val "https://www.youtube.com/watch?v=" id ",\n")
+                    str-val))
                 ""
                 batch)))
-            %))))))
+            %)
+           )))))
 
 (defn load-video-id-file []
   (read-string (slurp "video_ids")))
@@ -121,7 +124,8 @@
 
 (defn write-channel-video-urls []
  (get-all-uploads)
- (spit-id-urls @vids))
+ (spit-id-urls @vids)
+  )
 
 (defn get-all-subtitle-file-objs [srt-source-folders]
   (flatten
@@ -171,5 +175,4 @@
      (set)
      (clojure.set/difference (set file))
      (reduce (fn [s f] (str s " ./" f)) "")
-     ;;;(#(spit (str (first (config/all :srt-source-folders)) "/rm-script.sh") (str "rm " %)))
-     ))) 
+     (#(spit (str (first (config/all :srt-source-folders)) "/rm-script.sh") (str "rm " %)))))) 
