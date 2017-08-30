@@ -1,3 +1,3 @@
-# elliot
+# Aristotle
 
-A lifebox for Elliot Hulse.
+A search engine that indexes humans
