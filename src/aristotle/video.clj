@@ -124,35 +124,7 @@
    {::blocks (assoc-viewable-words caption-blocks)
     ::full-caption (de-blockify-words caption-blocks)}))
 
-(defn add-pos [video]
-  (map
-   #(assoc %1 :pos %2)
-   video
-   (blockify-list
-    (nlp-utils/tag-pos (de-blockify video ::words))
-    video
-    ::words)))
-
 (def into-string-array (partial into-array String))
-
-(defn add-lemmas
-  "Assocs lemmas into the video map"
-  [video]
-  (if (nil? ((first video) :pos))
-    (throw (Exception. "Video needs parts of speech to lemmatize")))
-  (-> (into [] (apply nlp-utils/lemmatize
-                   [(-> video
-                        (de-blockify ::words)
-                        into-string-array)
-                    (-> video
-                        (de-blockify :pos)
-                        into-string-array)]))
-      (blockify-list video ::words)
-      ((partial
-        map
-        (fn [block lemmas] (assoc block :lemmas lemmas))
-        video))))
-
 
 (def srt-source-folders (config/all :srt-source-folders))
 
