@@ -23,7 +23,12 @@
     [:em {:font-weight "bold"}]
     [:img {:height "90px"}]
     ;;[:ul {:list-style-type "none"}]
-    [:li {:display "block"}]]
+    [:li {:display "block"}]
+    [:#donate-div
+     [:form
+      {:margin-top "10px"}]
+     [:img
+      {:height "0px"}]]]
    [:.search-result-thumbnail
     {:width "30%"}]
    [:.search-result-title

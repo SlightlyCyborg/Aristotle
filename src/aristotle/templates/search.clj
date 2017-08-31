@@ -1,7 +1,8 @@
 (ns aristotle.templates.search
   (:require [garden.core :refer [css]]
             [clojure.pprint :as p]
-            [ring.util.request :refer [request-url]])
+            [ring.util.request :refer [request-url]]
+            [aristotle.donate-button :as donate-button])
   (:use hiccup.core))
 
 (defn parse-search-time [search-time]
@@ -24,6 +25,9 @@
 (defn render [query-result-struct page req]
   (into [] (concat
             [:div {:class "container"}]
+            (if (> (count (query-result-struct :docs)) 0)
+              donate-button/html
+              "")
             (mapv
              (fn [doc]
                [:div {:class "row search-result-row"}
