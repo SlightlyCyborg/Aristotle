@@ -2,7 +2,7 @@
   (:require [garden.core :refer [css]]
             [clojure.pprint :as p]
             [ring.util.request :refer [request-url]]
-            [aristotle.donate-button :as donate-button])
+            [aristotle.templates.donate-button :as donate-button])
   (:use hiccup.core))
 
 (defn parse-search-time [search-time]

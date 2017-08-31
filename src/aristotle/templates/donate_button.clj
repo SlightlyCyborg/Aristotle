@@ -1,4 +1,4 @@
-(ns aristotle.donate-button
+(ns aristotle.templates.donate-button
   (:require [hiccup.core :as h]
             [aristotle.config-loader :as config]))
 
