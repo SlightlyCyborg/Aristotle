@@ -11,3 +11,6 @@ pom.xml.asc
 .hg/
 resources/subs/*
 resources/video_ids/*
+resources/configs/*
+resources/config.edn
+resources/public/imgs/daemon_img.png
