@@ -22,21 +22,24 @@
 
 (def all (atom {}))
 
+(defn modified? [last-configs daemon-name]
+  (let [last-modified (get-last-modified daemon-name)
+        previous-last-modified (get-in
+                                last-configs 
+                                [(keyword daemon-name)
+                                 :last-modified])]
+      (or (nil? previous-last-modified)
+       (> last-modified previous-last-modified))))
+
 (defn get [daemon-name]
   (let [daemon-name (name daemon-name)]
-   (swap! all (fn [last-configs]
-                (merge
-                 last-configs
-                 (let [last-modified (get-last-modified daemon-name)
-                       previous-last-modified (get-in
-                                               last-configs 
-                                               [(keyword daemon-name)
-                                                :last-modified])]
-
-                   (if (or (nil? previous-last-modified)
-                           (> last-modified previous-last-modified))
-                     {(keyword daemon-name)
-                      (assoc (load-config daemon-name)
-                             :last-modified last-modified)}
-                     nil)))))))
+    (swap! all (fn [last-configs]
+                 (merge
+                  last-configs
+                  (let [last-modified (get-last-modified daemon-name)]
+                    (if (modified? last-configs daemon-name)
+                      {(keyword daemon-name)
+                       (assoc (load-config daemon-name)
+                              :last-modified last-modified)}
+                      nil)))))))
 
