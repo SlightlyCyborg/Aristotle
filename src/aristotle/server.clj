@@ -20,18 +20,12 @@
    req
    daemon-name))
 
-(def legacy-urls
-  {"elliot.daemon.life" "/elliott-hulse"
-   "elliott.daemon.life" "/elliott-hulse"
-   "collin.daemon.life" "/collin-bell"
-   "localhost:8080" "/collin-bell"})
-
 (defn home-route [req]
   (let [host (get-in req [:headers "host"])]
     (println (str host (get legacy-urls host)))
     (if (contains? legacy-urls host)
       {:status 301
-       :headers {"Location" (str "http://" host (get legacy-urls host))}})))
+       :headers {"Location" "https://slightlycyborg.github.io/daemon.life/"}})))
 
 (defn daemon-route
   "Returns the full html page with search results included"
