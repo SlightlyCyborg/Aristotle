@@ -72,28 +72,40 @@
                  (if (and (not (nil? (query-result-struct :num-found)))
                              (> page 1))
                       [:h3 {:id "first-page-headline"}
-                       [:a {:href (str "/" (query-terms->url-str
-                                            (assoc (req :params)
-                                                   "page"
-                                                   (str 1))))}
+                       [:a {:href (str "/"
+                                       daemon-name
+                                       (query-terms->url-str
+                                        (-> (req :params)
+                                            (dissoc :daemon-name)
+                                            (assoc 
+                                             "page"
+                                             (str 1)))))}
                         "First Page"]])]
 
                 [:div {:class "col"}
                  (if (and (not (nil? (query-result-struct :num-found)))
                           (> page 1))
                    [:h3 {:id "second-page-headline"}
-                    [:a {:href (str "/" (query-terms->url-str
-                                         (assoc (req :params)
-                                                "page"
-                                                (str (- page 1)))))}
+                    [:a {:href (str "/"
+                                    daemon-name
+                                    (query-terms->url-str
+                                     (-> (req :params)
+                                         (dissoc :daemon-name)
+                                         (assoc 
+                                          "page"
+                                          (str (- page 1))))))}
                      "Prev Page/"]])
 
                  ;;Next Page
                  (if (and (not (nil? (query-result-struct :num-found)))
                           (< (* page 10) (query-result-struct :num-found)))
                    [:h3 {:id "third-page-headline"}
-                    [:a {:href (str "/" (query-terms->url-str
-                                         (assoc (req :params)
-                                                "page"
-                                                (str (+ 1 page)))) )}
+                    [:a {:href (str "/"
+                                    daemon-name
+                                    (query-terms->url-str
+                                     (-> (req :params)
+                                         (dissoc :daemon-name)
+                                         (assoc 
+                                          "page"
+                                          (str (+ 1 page))))))}
                      " Next Page"]])]]]]])))
