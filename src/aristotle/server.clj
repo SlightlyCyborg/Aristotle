@@ -20,11 +20,24 @@
    req
    daemon-name))
 
-(defn home-route
+(def legacy-urls
+  {"elliot.daemon.life" "/elliott-hulse"
+   "elliott.daemon.life" "/elliott-hulse"
+   "collin.daemon.life" "/collin-bell"
+   "localhost:8080" "/collin-bell"})
+
+(defn home-route [req]
+  (let [host (get-in req [:headers "host"])]
+    (println (str host (get legacy-urls host)))
+    (if (contains? legacy-urls host)
+      {:status 301
+       :headers {"Location" (str "http://" host (get legacy-urls host))}})))
+
+(defn daemon-route
   "Returns the full html page with search results included"
   [req]
+  (println (get-in req [:headers "host"]))
   (let [{{daemon-name :daemon-name terms "terms" page "page" } :params} req]
-    (println (config/get-by-name daemon-name))
     (if (:not-found (config/get-by-name daemon-name))
       {:status 200
        :body (unf/render daemon-name)}
@@ -40,7 +53,8 @@
                                   req
                                   daemon-name))})))
 (defroutes all-routes
-  (GET "/:daemon-name" [] home-route))
+  (GET "/" [] home-route)
+  (GET "/:daemon-name" [] daemon-route))
 
 (def app
   (->  all-routes
