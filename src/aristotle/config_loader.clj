@@ -13,8 +13,10 @@
 
 (defn load-config [daemon-name]
   (println (str "had to slurp file: " daemon-name))
-  (edn/read-string
-   (slurp (gen-config-fname daemon-name))))
+  (try
+    (edn/read-string
+     (slurp (gen-config-fname daemon-name)))
+    (catch Exception e {:not-found true})))
 
 (defn get-last-modified [daemon-name]
   (.lastModified (clojure.java.io/file
@@ -45,4 +47,3 @@
                         (assoc (load-config daemon-name)
                                :last-modified last-modified)}
                        nil))))))))
-

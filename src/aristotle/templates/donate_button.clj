@@ -3,7 +3,10 @@
             [aristotle.config-loader :as config]))
 
 
-(def html
+(defn get-html
+  [daemon-name]
+  (println daemon-name)
+  ;(println (config/get-by-name daemon-name))
   (h/html
    [:div {:id "donate-div"}
     [:form {:action "https://www.paypal.com/cgi-bin/webscr"
@@ -12,7 +15,7 @@
      [:input {:type "hidden" :name "cmd" :value "_s-xclick"}]
      [:input {:type "hidden"
               :name "hosted_button_id"
-              :value (config/all :donate-id)}]
+              :value ((config/get-by-name daemon-name) :donate-id)}]
      [:input {:type "image"
               :src "https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
               :border "0"
@@ -26,4 +29,5 @@
             :height "1"}]]
     [:p (str
          "50% goes to daemon.life creator<br>50% goes to "
-         (config/all :daemon-name))]]))
+         (:daemon-name (config/get-by-name daemon-name))
+         )]]))

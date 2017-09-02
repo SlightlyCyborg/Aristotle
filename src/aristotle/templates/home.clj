@@ -16,8 +16,11 @@
       [:div {:class "container" :id "search-container"}
        [:div {:class "row search-header"}
         [:div {:class "col-2"}
-         [:a {:href "/"}
-          [:img {:src "imgs/daemon_img.png" :id "daemon-img"}]]]
+         [:a {:href (str "/" daemon-name)}
+          [:img {:src (str "imgs/"
+                           daemon-name
+                           "/daemon_img.png")
+                 :id "daemon-img"}]]]
         [:div {:class "search-div col"}
          [:div {:class "search-div-contents"}
           [:form {:method "GET"}

@@ -13,23 +13,30 @@
 (defn search
   "Takes a query and returns the search hiccup/html component data"
   [query page req daemon-name]
-  (search-template/render (search/go query daemon-name) (if (nil? page) 1 page) req))
+  (search-template/render
+   (search/go query daemon-name)
+   (if (nil? page) 1 page)
+   req
+   daemon-name))
 
 (defn home-route
   "Returns the full html page with search results included"
   [req]
   (let [{{daemon-name :daemon-name terms "terms" page "page" } :params} req]
-    {:status 200
-     :body  (home/render daemon-name
-                         (search {:q terms
-                                  :start (* 10
-                                            (if (nil? page)
-                                              0
-                                              (- (Integer/parseInt page) 1)))}
-                                 (if (nil? page)
-                                   1 (Integer/parseInt page))
-                                 req
-                                 daemon-name))}))
+    (println (config/get-by-name daemon-name))
+    (if (:not-found (config/get-by-name daemon-name))
+     "User not found"
+     {:status 200
+      :body  (home/render daemon-name
+                          (search {:q terms
+                                   :start (* 10
+                                             (if (nil? page)
+                                               0
+                                               (- (Integer/parseInt page) 1)))}
+                                  (if (nil? page)
+                                    1 (Integer/parseInt page))
+                                  req
+                                  daemon-name))})))
 (defroutes all-routes
   (GET "/:daemon-name" [] home-route))
 

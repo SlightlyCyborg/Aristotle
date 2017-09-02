@@ -22,11 +22,11 @@
      (fn [[name val]] (str name "=" (clojure.string/replace val #" " "+")))
      query-terms))))
 
-(defn render [query-result-struct page req]
+(defn render [query-result-struct page req daemon-name]
   (into [] (concat
             [:div {:class "container"}]
             (if (> (count (query-result-struct :docs)) 0)
-              donate-button/html
+              (donate-button/get-html daemon-name)
               "")
             (mapv
              (fn [doc]
