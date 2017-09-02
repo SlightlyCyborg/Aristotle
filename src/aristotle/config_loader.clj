@@ -3,6 +3,7 @@
 
 
 (defn get-all-config-names []
+
   (->>
    (clojure.java.io/file "resources/configs")
    .list

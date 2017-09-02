@@ -2,6 +2,7 @@
   "The main entry point into the program. Starts the project server."
   (:require [aristotle.templates.home :as home]
             [aristotle.templates.search :as search-template]
+            [aristotle.templates.user-not-found :as unf]
             [aristotle.search :as search]
             [aristotle.config-loader :as config]
             [clojure.edn :as edn])
@@ -25,7 +26,8 @@
   (let [{{daemon-name :daemon-name terms "terms" page "page" } :params} req]
     (println (config/get-by-name daemon-name))
     (if (:not-found (config/get-by-name daemon-name))
-     "User not found"
+      {:status 200
+       :body (unf/render daemon-name)}
      {:status 200
       :body  (home/render daemon-name
                           (search {:q terms
