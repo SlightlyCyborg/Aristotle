@@ -1,0 +1,20 @@
+{:srt-source-folders ["resources/subs/casey-neistat"]
+ :youtube-channel {:id "UCtinbF-Q-fVthA0qrFQTgXQ" :type :channel}
+ :youtube-credentials
+ {:client-secret "sample-secret"
+  :youtube-key "sample-key"}
+
+ :solr-connection
+ {:username "sample-username"
+  :password "sample-password"
+  :address "solr.sample.com"
+  :core "template"}
+
+ :daemon-name "Template McTemplateface"
+ :headline "Search Template McTemplateface's videos"
+ :donate-id "sample-donate-id"
+ :solr-block-connection
+ {:username "sample-username"
+  :password "sample-password"
+  :address "solr.sample.com"
+  :core "template-video-blocks"}}
