@@ -31,15 +31,18 @@
       (or (nil? previous-last-modified)
        (> last-modified previous-last-modified))))
 
-(defn get [daemon-name]
+(def server (edn/read-string (slurp "resources/config.edn")))
+
+(defn get-by-name [daemon-name]
   (let [daemon-name (name daemon-name)]
-    (swap! all (fn [last-configs]
-                 (merge
-                  last-configs
-                  (let [last-modified (get-last-modified daemon-name)]
-                    (if (modified? last-configs daemon-name)
-                      {(keyword daemon-name)
-                       (assoc (load-config daemon-name)
-                              :last-modified last-modified)}
-                      nil)))))))
+    ((keyword daemon-name)
+     (swap! all (fn [last-configs]
+                  (merge
+                   last-configs
+                   (let [last-modified (get-last-modified daemon-name)]
+                     (if (modified? last-configs daemon-name)
+                       {(keyword daemon-name)
+                        (assoc (load-config daemon-name)
+                               :last-modified last-modified)}
+                       nil))))))))
 

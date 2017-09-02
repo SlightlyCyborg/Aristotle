@@ -4,7 +4,7 @@
             [aristotle.config-loader :as config])
   (:use hiccup.core))
 
-(defn render [search-component]
+(defn render [daemon-name search-component]
   
     (html
      [:html
@@ -26,6 +26,6 @@
                      :name "terms"
                      :class "form-control"
                      :id "search"
-                     :placeholder (str "...ask " (config/all :daemon-name) " a question or search for wisdom")}]]]]]]
+                     :placeholder (str "...ask " ((config/get-by-name daemon-name) :daemon-name) " a question or search for wisdom")}]]]]]]
         [:div {:id "results-div"}
          search-component]]]]))

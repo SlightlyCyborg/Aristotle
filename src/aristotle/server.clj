@@ -3,7 +3,8 @@
   (:require [aristotle.templates.home :as home]
             [aristotle.templates.search :as search-template]
             [aristotle.search :as search]
-            [aristotle.config-loader :as config])
+            [aristotle.config-loader :as config]
+            [clojure.edn :as edn])
   (:use [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server
         ring.middleware.params
@@ -11,25 +12,26 @@
 
 (defn search
   "Takes a query and returns the search hiccup/html component data"
-  [query page req]
-  (search-template/render (search/go query) (if (nil? page) 1 page) req))
+  [query page req daemon-name]
+  (search-template/render (search/go query daemon-name) (if (nil? page) 1 page) req))
 
 (defn home-route
   "Returns the full html page with search results included"
   [req]
-  (let [{{terms "terms" page "page"} :params} req]
+  (let [{{daemon-name :daemon-name terms "terms" page "page" } :params} req]
     {:status 200
-     :body  (home/render (search {:q terms
+     :body  (home/render daemon-name
+                         (search {:q terms
                                   :start (* 10
                                             (if (nil? page)
                                               0
                                               (- (Integer/parseInt page) 1)))}
                                  (if (nil? page)
                                    1 (Integer/parseInt page))
-                                 req))}))
-
+                                 req
+                                 daemon-name))}))
 (defroutes all-routes
-  (GET "/" [] home-route))
+  (GET "/:daemon-name" [] home-route))
 
 (def app
   (->  all-routes
@@ -52,4 +54,4 @@
   [& args]
   (if (not (nil? @server))
     (stop-server))
-  (reset! server (run-server #'app {:port (config/all :port)})))
+  (reset! server (run-server #'app {:port (config/server :port)})))

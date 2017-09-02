@@ -8,11 +8,18 @@
 (def block-connection (:solr-block-connection config/all))
 (def field-to-display-and-highlight :viewable_words_t)
 
+
+(defn get-solr-connection [daemon-name]
+  (get (config/get-by-name daemon-name) :solr-connection))
+
+(defn get-solr-block-connection [daemon-name]
+  (get (config/get-by-name daemon-name) :solr-block-connection))
+
 (defn query-solr-for-blocks
   "Takes a query struct and a doc and then searches video blocks for the blocks in which the query occurs in the particular video"
-  [query-struct video-doc]
+  [daemon-name query-struct video-doc]
   (common/mapply
-   solr/query block-connection
+   solr/query (get-solr-block-connection daemon-name)
    {:q (str "captions_t:"
             (:q query-struct)
             " AND video_id_s:\""
@@ -35,8 +42,8 @@
    :start-time (:start_time_s block-query-response)
    :stop-time (:stop_time_s block-query-response)})
 
-(defn get-blocks [query-struct doc]
-  (let [query-response (query-solr-for-blocks query-struct doc)]
+(defn get-blocks [query-struct daemon-name doc]
+  (let [query-response (query-solr-for-blocks daemon-name query-struct doc)]
    (assoc doc
           :blocks
           (map
@@ -62,19 +69,21 @@
            "\"~10000^5"
            ))))
 
-(defn go [query-struct]
+(defn go [query-struct daemon-name]
   (if (nil? (query-struct :q))
     ;;Don't bother querying, it is an empty query
     {:docs []}
 
     ;;Do an actual query
     (let [rv (common/mapply
-              solr/query connection (improve-query query-struct))]
+              solr/query
+              (get-solr-connection daemon-name)
+              (improve-query query-struct))]
       (assoc
        rv
        :docs
        (map
-        (partial get-blocks query-struct)
+        (partial get-blocks query-struct daemon-name)
         (:docs rv))
        :num-found
        (:num-found rv)))))
