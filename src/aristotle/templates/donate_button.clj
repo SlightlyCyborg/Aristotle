@@ -26,8 +26,4 @@
             :border "0"
             :src "https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
             :width "1"
-            :height "1"}]]
-    [:p (str
-         "50% goes to daemon.life creator<br>50% goes to "
-         (:daemon-name (config/get-by-name daemon-name))
-         )]]))
+            :height "1"}]]]))
