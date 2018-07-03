@@ -13,6 +13,14 @@
     ["h" "m" "s"]
     (clojure.string/split search-time #":"))))
 
+(defn parse-search-time-for-player-api [search-time]
+  (reduce
+   +
+   (map
+    #(* %1 (Integer/parseInt %2))
+    [3600 60 1]
+    (clojure.string/split search-time #":"))))
+
 (defn query-terms->url-str [query-terms]
   (str
    "?"
@@ -24,21 +32,25 @@
 
 (defn render [query-result-struct page req daemon-name]
   (into [] (concat
-            [:div {:class "container"}]
-            (if (> (count (query-result-struct :docs)) 0)
-              (donate-button/get-html daemon-name)
-              "")
+            [:div {:class "container" :id "search-container"}]
             (mapv
              (fn [doc]
                [:div {:class "row search-result-row"}
-                 [:div {:class "search-result-thumbnail col-2"}
-                  [:img {:src (:thumbnail_s doc)}]]
-                 [:div {:class "search-result-title col"}
+                 [:div {:class "search-result-thumbnail col-md-4"}
+                  [:img {:src (:thumbnail_s doc)
+                         :id (str "img-"
+                                  (:id doc))
+                         :class "thumbnail"
+                         :data-video-id (:id doc)}]
+                  [:div {:class "video-wrapper"
+                         :id (str "video-wrapper-" (:id doc))
+                         :data-video-id (:id doc)}
+                   [:div {:class "video"
+                          :id (str "video-" (:id doc))}]]]
+                 [:div {:class "search-result-title col-md-8"}
                   [:div {:class "container"}
                    [:div {:class "row"}
-                    [:a {:href (str "https://www.youtube.com/watch?v="
-                                    (:id doc))}
-                     [:h3 (first (:title_t doc))]]]
+                    [:h3 (first (:title_t doc))]]
                    [:div {:class "row"}
                     (into []
                      (cons
@@ -46,18 +58,32 @@
                       (map
                        (fn [{highlight :highlight
                              start-time :start-time
-                             stop-time :stop-time}]
+                             stop-time :stop-time}
+                            x]
                          [:div {:class "block-div"}
                           [:a
                            {:href (str "https://youtu.be/"
                                        (:id doc)
                                        "?t="
                                        (parse-search-time
-                                        start-time))}
+                                        start-time))
+                            :data-video-id (:id doc)
+                            :data-x x
+                            :class (str
+                                    "player-control"
+                                    " "
+                                    (str "player-control-for-"
+                                         (:id doc)))
+                            :data-time (parse-search-time-for-player-api
+                                        start-time)
+                             }
                            (str start-time " - " stop-time)]
+                          [:div {:id (str "loader-" (:id doc) "-" x)
+                                 :style "display:none;"} "foo"]
                           "<br>"
                           (str "\"" highlight \")])
-                       (:blocks doc))))]]]])
+                       (:blocks doc)
+                       (range))))]]]])
              (query-result-struct :docs))
             [
              [:div {:class "container"}
