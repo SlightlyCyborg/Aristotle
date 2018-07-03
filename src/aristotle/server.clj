@@ -28,7 +28,8 @@
   "Returns the full html page with search results included"
   [req]
   (println (get-in req [:headers "host"]))
-  (let [{{daemon-name :daemon-name terms "terms" page "page" } :params} req]
+  (let [{{terms "terms" page "page" } :params} req
+        daemon-name (config/server :daemon-user-name)]
     (if (:not-found (config/get-by-name daemon-name))
       {:status 200
        :body (unf/render daemon-name)}
@@ -44,8 +45,7 @@
                                   req
                                   daemon-name))})))
 (defroutes all-routes
-  (GET "/" [] home-route)
-  (GET "/:daemon-name" [] daemon-route))
+  (GET "/" [] daemon-route))
 
 (def app
   (->  all-routes
