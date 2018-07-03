@@ -37,7 +37,7 @@
        [:img {:src "imgs/home.png" :class "home-btn"}]]
       [:div {:class "container" :id "head-container"}
        [:div {:class "row"}
-        [:a {:href (str  (str "/" daemon-name)) :id "header-img-atag"}
+        [:a {:href "/" :id "header-img-atag"}
           [:img {:src (str "imgs/"
                            daemon-name
                            "/logo.jpg")
