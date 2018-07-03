@@ -5,29 +5,31 @@
   (:use hiccup.core))
 
 (defn render [daemon-name search-component]
-  
     (html
      [:html
       [:head
       "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css' integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M' crossorigin='anonymous'>"
-      [:style (style/render)]]
+       [:style (style/render)]
+       [:meta {:name "viewport"
+               :content "width=device-width"
+               :initial-scale 1.0}]]
      [:body
-      [:div {:class "container" :id "search-container"}
-       [:div {:class "row search-header"}
-        [:div {:class "col-2"}
-         [:a {:href (str "/" daemon-name)}
+      [:div {:class "container" :id "head-container"}
+       [:div {:class "row"}
+        [:a {:href "https://jordanbpeterson.com" :id "header-img-atag"}
           [:img {:src (str "imgs/"
                            daemon-name
-                           "/daemon_img.png")
+                           "/logo.jpg")
                  :id "daemon-img"}]]]
-        [:div {:class "search-div col"}
-         [:div {:class "search-div-contents"}
-          [:form {:method "GET"}
+        [:div {:class "row search-bar-row"}
+          [:form {:method "GET" :class "search-form"}
            [:div {:class "form-group"}
             [:input {:type "text"
                      :name "terms"
                      :class "form-control"
                      :id "search"
-                     :placeholder (str "...ask " ((config/get-by-name daemon-name) :daemon-name) " a question or search for wisdom")}]]]]]]
+                     :placeholder "search terms"}]]
+           [:div {:class "form-group"}
+            [:button {:type "submit" :class "btn btn-lg btn-default"} "Search"]]]]]
         [:div {:id "results-div"}
-         search-component]]]]))
+         search-component]]]))

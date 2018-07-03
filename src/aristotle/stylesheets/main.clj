@@ -3,48 +3,26 @@
 
 
 
-(def header
-  [[:#search-container {:display :block
-                        :margin :auto
-                        :margin-top "30px"
-                        :margin-bottom "15px"}]
-   [:.search-header {}]
-   [:.search-div {:position "relative"}]
-   [:.search-div-contents {:position "absolute"
-                           :bottom -17
-                           :left 20 
-                           :width "60%"}]
-   [:#daemon-img {:height "140px"}]])
+(def header [[:#daemon-img {:width "100%" :margin "0"}]
+             [:#header-img-atag {:margin "auto" :width "30%" :max-width "190px"}]
+             [:#head-container {:text-align :center :width "100%" :margin "auto"}]
+             [:.search-form {:width "70%" :margin "auto" :max-width "300px"}]
+             [:#search-title {:margin "auto"}]
+             [:#search {:height "35px"}]
+             [:#results-div :text-align :center]])
 
 
 (def search-results
   [[:#results-div
     [:a {:color "#0074D9"}]
     [:em {:font-weight "bold"}]
-    [:img {:height "90px"}]
+    ;[:.search-result-thumbnail {:max-width "200px"}]
+    [:img {:width "100%" :display "block" :margin "auto"}]
     ;;[:ul {:list-style-type "none"}]
     [:li {:display "block"}]
-    [:#donate-div
-     [:form
-      {:margin-top "10px"}]
-     [:img
-      {:height "0px"}]]]
-   [:.search-result-thumbnail
-    {:width "30%"}]
-   [:.search-result-title
-    {:width "60%"}]
-   [:.search-result-row
-    {:margin-top "20px"}]
-   [:.search-term
-    {:font-weight "bold"}]
-   [:.block-div
-    {:margin-top "10px"}]
-   [:.search-page-nav
-    {:float "left"}
-    [:h3
-     {:float "left"}]]
-   [:#first-page-headline
-    {:margin-right "15px"}]])
+    [:.search-result-row
+     {:margin-bottom "40px" }]
+    [:.search-result-thumbnail {:margin-bottom "15px"}]]])
 
 (defn render []
   (apply css
