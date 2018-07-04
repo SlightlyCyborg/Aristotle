@@ -9,6 +9,9 @@
   "
   var to_execute = [];
   document.addEventListener('DOMContentLoaded', function() {
+
+  document.getElementById('search').focus();
+  document.getElementById('search').select();
     var player_controls = document.getElementsByClassName('player-control');
   console.log('len' + player_controls.length);
     for(var i = 0; i < player_controls.length; i++) {
@@ -19,6 +22,7 @@
         };
     }
   });
+
   ")
 
 (defn render [daemon-name search-component]
@@ -28,13 +32,16 @@
       [:head
       "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css' integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M' crossorigin='anonymous'>"
        [:link {:rel :stylesheet :href "css/menu.css"}]
+       [:link {:rel :icon :href  (str "imgs/" daemon-name
+                                                   "/logo.jpg")}]
        [:style (style/render)]
        [:script init-js]
        [:meta {:name "viewport"
                :content "width=device-width, initial-scale=1.0"}]]
      [:body
       [:a {:href "https://jordanbpeterson.com/"}
-       [:img {:src "imgs/home.png" :class "home-btn"}]]
+       [:button {:type "button" :class "btn btn-secondary"} "back to jordanbpeterson.com"]
+       ]
       [:div {:class "container" :id "head-container"}
        [:div {:class "row"}
         [:a {:href "/" :id "header-img-atag"}
@@ -49,9 +56,9 @@
                      :name "terms"
                      :class "form-control"
                      :id "search"
-                     :placeholder "search terms"}]]
+                     :placeholder "search Dr. Peterson's YouTube"}]]
            [:div {:class "form-group"}
-            [:button {:type "submit" :class "btn btn-lg btn-default"} "Search"]]]]]
+            [:button {:type "submit" :class "btn btn-lg btn-primary"} "Search"]]]]]
         [:div {:id "results-div"}
          search-component]
       [:script {:src "js/jquery.js"}]

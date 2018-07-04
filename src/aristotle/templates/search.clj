@@ -88,15 +88,13 @@
             [
              [:div {:class "container"}
               [:div {:class "row"}
-               [:div {:class "col-2"}]
-               [:div {:class "search-page-nav"}
 
                 ;;Prev Page
-                [:div
-                 {:class "col"}
 
                  (if (and (not (nil? (query-result-struct :num-found)))
                              (> page 1))
+
+                   [:div {:class "col-s nav-btn"}
                       [:h3 {:id "first-page-headline"}
                        [:a {:href (str "/"
                                        (query-terms->url-str
@@ -105,30 +103,38 @@
                                             (assoc 
                                              "page"
                                              (str 1)))))}
-                        "First Page"]])]
+                        [:button {:class "btn btn-primary"}
+                         "First Page"]]]])
 
-                [:div {:class "col"}
                  (if (and (not (nil? (query-result-struct :num-found)))
                           (> page 1))
-                   [:h3 {:id "second-page-headline"}
-                    [:a {:href (str "/"
-                                    (query-terms->url-str
-                                     (-> (req :params)
-                                         (dissoc :daemon-name)
-                                         (assoc 
-                                          "page"
-                                          (str (- page 1))))))}
-                     "Prev Page/"]])
+
+                   [:div {:class "nav-btn col-s"}
+                    [:h3 {:id "second-page-headline"}
+                     [:a {:href (str "/"
+                                     (query-terms->url-str
+                                      (-> (req :params)
+                                          (dissoc :daemon-name)
+                                          (assoc 
+                                           "page"
+                                           (str (- page 1))))))}
+                      [:button {:class "btn btn-primary"}
+                       "Prev Page"]]]])
 
                  ;;Next Page
                  (if (and (not (nil? (query-result-struct :num-found)))
                           (< (* page 10) (query-result-struct :num-found)))
+
+                   [:div {:class "nav-btn col-s"}
                    [:h3 {:id "third-page-headline"}
                     [:a {:href (str "/"
                                     (query-terms->url-str
                                      (-> (req :params)
                                          (dissoc :daemon-name)
-                                         (assoc 
+                                         (assoc
                                           "page"
                                           (str (+ 1 page))))))}
-                     " Next Page"]])]]]]])))
+                     [:button {:class "btn btn-primary"}
+                      " Next Page"]]]])
+
+               [:div {:class "col-s-9"}]]]])))
