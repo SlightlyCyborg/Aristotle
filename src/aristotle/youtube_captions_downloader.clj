@@ -140,7 +140,7 @@
 
 
 (defn write-channel-video-urls []
- (get-all-uploads)
+ (get-all-uploads-list)
  (spit-id-urls @vids)
   )
 

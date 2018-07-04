@@ -99,7 +99,6 @@
                              (> page 1))
                       [:h3 {:id "first-page-headline"}
                        [:a {:href (str "/"
-                                       daemon-name
                                        (query-terms->url-str
                                         (-> (req :params)
                                             (dissoc :daemon-name)
@@ -113,7 +112,6 @@
                           (> page 1))
                    [:h3 {:id "second-page-headline"}
                     [:a {:href (str "/"
-                                    daemon-name
                                     (query-terms->url-str
                                      (-> (req :params)
                                          (dissoc :daemon-name)
@@ -127,7 +125,6 @@
                           (< (* page 10) (query-result-struct :num-found)))
                    [:h3 {:id "third-page-headline"}
                     [:a {:href (str "/"
-                                    daemon-name
                                     (query-terms->url-str
                                      (-> (req :params)
                                          (dissoc :daemon-name)

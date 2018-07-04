@@ -30,20 +30,17 @@
   (println (get-in req [:headers "host"]))
   (let [{{terms "terms" page "page" } :params} req
         daemon-name (config/server :daemon-user-name)]
-    (if (:not-found (config/get-by-name daemon-name))
       {:status 200
-       :body (unf/render daemon-name)}
-     {:status 200
-      :body  (home/render daemon-name
-                          (search {:q terms
-                                   :start (* 10
-                                             (if (nil? page)
-                                               0
-                                               (- (Integer/parseInt page) 1)))}
-                                  (if (nil? page)
-                                    1 (Integer/parseInt page))
-                                  req
-                                  daemon-name))})))
+       :body  (home/render daemon-name
+                           (search {:q terms
+                                    :start (* 10
+                                              (if (nil? page)
+                                                0
+                                                (- (Integer/parseInt page) 1)))}
+                                   (if (nil? page)
+                                     1 (Integer/parseInt page))
+                                   req
+                                   daemon-name))}))
 (defroutes all-routes
   (GET "/" [] daemon-route))
 

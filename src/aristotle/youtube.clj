@@ -3,7 +3,7 @@
             [cheshire.core :refer :all]
             [aristotle.config-loader :as config]))
 
-(def youtube-creds (config/all :youtube-credentials))
+(def youtube-creds (config/server :youtube-credentials))
 
 (defn video-data [ids]
   (->> (client/get "https://www.googleapis.com/youtube/v3/videos"

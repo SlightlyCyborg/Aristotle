@@ -125,7 +125,7 @@
 
 (def into-string-array (partial into-array String))
 
-(def srt-source-folders (config/all :srt-source-folders))
+(def srt-source-folders ["/home/alex/aristotle_lisp/videos/"])
 
 (defn get-all-subtitle-file-objs [srt-source-folders]
   (flatten
@@ -220,8 +220,8 @@
       :stop_time_s (time-struct->string (get-in block [::time :stop]))})
    (get-in video-struct [::caption ::blocks])))
 
-(def connection (config/all :solr-connection))
-(def block-connection (config/all :solr-block-connection))
+(def connection (config/server :solr-connection))
+(def block-connection (config/server :solr-block-connection))
 
 (defn index [video-structs]
   (->>
@@ -269,4 +269,3 @@
         ;(map #(index %))
         (map #(index-blocks %))
         ))
-
