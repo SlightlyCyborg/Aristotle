@@ -1,4 +1,4 @@
-j(ns aristotle.core
+(ns aristotle.core
   (:require [aristotle.config-loader :as config]
             [aristotle.server :as server]
             [aristotle.youtube-captions-downloader :as yt]
