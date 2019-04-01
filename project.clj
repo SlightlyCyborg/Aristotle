@@ -3,11 +3,11 @@
   :url "http://aristotle.daemon.life"
   :license {:name "The Daemon License"
             :url "http://daemon.life"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/core.async "0.3.443"]
                  [ring "1.6.2"]
                  [clj-http "3.7.0"]
-                 [http-kit "2.2.0"]
+                 [http-kit "2.3.0"]
                  [compojure "1.6.0"]
                  [hiccup "1.0.5"]
                  [garden "1.3.2"]
