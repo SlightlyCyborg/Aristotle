@@ -42,10 +42,9 @@
 
 (deftest test-parse-block-time
   (let [test-data "00:05:01,670 --> 00:05:06,970"]
-    (is (=
-         (parse-block-time test-data)
-         {:start {:hour 0 :second 1 :millis 670 :minute 5}
-          :stop  {:hour 0 :second 6 :millis 970 :minute 5}}))))
+    (is (= (parse-block-time test-data)
+           {:start {:hour 0 :second 1 :millis 670 :minute 5}
+            :stop  {:hour 0 :second 6 :millis 970 :minute 5}}))))
 
 (defn load-caption-blocks
   "Takes an srt file and assocs in ::block-id ::words ::time"
@@ -63,7 +62,7 @@
   [video key]
   (reduce
    #(concat %1 (key %2))
-   [] 
+   []
    video))
 
 

@@ -9,23 +9,22 @@
   (:use org.httpkit.server
         ring.middleware.params))
 
-;;OAuth Constants
-(def client-id "187737927310-3aqo536afr48i4u8vubo6hsugtuc2hcp.apps.googleusercontent.com")
-(def auth-data (agent {:access-token nil}))
-
-;;Youtube Access Constants
-(def client-secret "XG5G89jCPt-L__-y1C3Vd3Eb")
-(def youtube-key "AIzaSyARW-Zw7E34dS9jvTWYYXI-532ST9VXfGk" )
-(def channel-name "stefbot")
+;; Youtube Access Constants
+(def youtube-key (get-in config/server [:youtube-credentials :youtube-key]))
 (def batch-size 50)
+
+;; Module state
 (def next-page-token (atom {}))
 (def vids (atom #{}))
 
-
-(defn response->clj [response]
+(defn response->clj
+  "Use cheshire to turn a http response string into a map of only the body"
+  [response]
   (parse-string (:body response)))
 
-(defn save-page-token [data playlist-id]
+(defn save-page-token
+  "Statefully saves the next page token for the current video ID api query."
+  [data playlist-id]
   (swap! next-page-token
          assoc playlist-id (get data "nextPageToken" :no-more-pages))
   data)
@@ -139,11 +138,6 @@
 
 
 
-(defn write-channel-video-urls []
- (get-all-uploads-list)
- (spit-id-urls @vids)
-  )
-
 (defn get-all-subtitle-file-objs [srt-source-folders]
   (flatten
    (map
@@ -181,7 +175,7 @@
 
 (defn gen-captions-to-delete [daemon-name]
   (let [file (->>
-              (config/all :srt-source-folders)
+              ((config/get-by-name daemon-name) :srt-source-folders)
               get-all-subtitle-file-objs
               (map #(.getName (:caption-file %))))]
     (->>
@@ -193,3 +187,9 @@
      (clojure.set/difference (set file))
      (reduce (fn [s f] (str s " ./" f)) "")
      (#(spit (str (first ((config/get-by-name daemon-name) :srt-source-folders)) "/rm-script.sh") (str "rm " %)))))) 
+
+(defn daemon-name->video-id-file
+  [daemon-keyword]
+  (get-all-uploads-list daemon-keyword)
+  (spit-id-urls @vids daemon-keyword))
+
