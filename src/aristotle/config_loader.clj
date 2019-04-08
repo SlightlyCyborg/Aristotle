@@ -34,9 +34,12 @@
       (or (nil? previous-last-modified)
        (> last-modified previous-last-modified))))
 
-(def server (edn/read-string (slurp "resources/config.edn")))
+(def server (edn/read-string (slurp "resources/server.edn")))
 
-(defn get-by-name [daemon-name]
+
+(defn get-by-name
+  "This is the main function for retrieving configs"
+  [daemon-name]
   (let [daemon-name (name daemon-name)]
     ((keyword daemon-name)
      (swap! all (fn [last-configs]

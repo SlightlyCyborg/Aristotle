@@ -55,8 +55,8 @@
   (put-output "Put image in resources/public/imgs/daemon_img.png")
   (wait-on-user))
 
-(defn edit-config []
-  (put-output "Open up resources/config.edn")
+(defn make-new-config [daemon-name]
+  (put-output (str "Open up resources/" daemon-name "/config.edn"))
   (wait-on-user)
   (put-output "Edit the config options including:\n:solr-connection\n:solr-block-connection\n:daemon-name\n:youtube-channel\n:headline\n:srt-source-folders")
   (wait-on-user)
@@ -64,8 +64,6 @@
   (wait-on-user)
   (put-output "Save the config.edn")
   (wait-on-user)
-  (put-output "Reloading config")
-  (config/reload)
   (put-output "Reloaded config")
   (wait-on-user))
 
@@ -101,9 +99,9 @@
   (put-output "   resources/config.edn"))
 
 
-(defn start []
+(defn start [daemon-name]
   (create-daemon-img)
-  (edit-config)
+  (make-new-config daemon-name)
   (create-solr-cores)
   (get-captions)
   (index-docs)
