@@ -1,4 +1,4 @@
-(defproject aristotle "2.0.0"
+(defproject aristotle "3.0.0"
   :description "A search engine for Elliot's content"
   :url "http://aristotle.daemon.life"
   :license {:name "The Daemon License"
