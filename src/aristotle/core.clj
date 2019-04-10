@@ -46,13 +46,9 @@
   (wait-on-user))
 
 (defn create-daemon-img []
-  (put-output "Download img of the person")
+  (put-output "Download logo")
   (wait-on-user)
-  (put-output "Open up gimp")
-  (wait-on-user)
-  (put-output "Cut image and save as png")
-  (wait-on-user)
-  (put-output "Put image in resources/public/imgs/daemon_img.png")
+  (put-output "Put image in resources/public/imgs/logo.png")
   (wait-on-user))
 
 (defn make-new-config [daemon-name]

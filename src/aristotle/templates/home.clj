@@ -26,40 +26,48 @@
   ")
 
 (defn render [daemon-name search-component]
-    (html
-     [:html
-      [:title "Search Jordan Peterson"]
-      [:head
+  (let [{back-button-url :back-button-url
+         back-button-text :back-button-text
+         daemon-display-name :daemon-name
+         search-bar-text :search-bar-text
+         home-url :home-url}
+        (config/get-by-name daemon-name)]
+    (print (config/get-by-name daemon-name))
+    (print search-bar-text)
+   (html
+    [:html
+     [:title (str "Search " daemon-display-name)]
+     [:head
       "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css' integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M' crossorigin='anonymous'>"
-       [:link {:rel :stylesheet :href "css/menu.css"}]
-       [:link {:rel :icon :href  (str "imgs/" daemon-name
-                                                   "/logo.jpg")}]
-       [:style (style/render)]
-       [:script init-js]
-       [:meta {:name "viewport"
-               :content "width=device-width, initial-scale=1.0"}]]
+      [:link {:rel :stylesheet :href "css/menu.css"}]
+      [:link {:rel :icon :href  (str "imgs/" daemon-name
+                                     "/logo")}]
+      [:style (style/render)]
+      [:script init-js]
+      [:meta {:name "viewport"
+              :content "width=device-width, initial-scale=1.0"}]]
      [:body
-      [:a {:href "https://jordanbpeterson.com/"}
-       [:button {:type "button" :class "btn btn-secondary"} "back to jordanbpeterson.com"]
-       ]
+      [:a {:href back-button-url}
+       [:button {:type "button" :class "btn btn-secondary"}
+         back-button-text]]
       [:div {:class "container" :id "head-container"}
        [:div {:class "row"}
-        [:a {:href "/" :id "header-img-atag"}
-          [:img {:src (str "imgs/"
-                           daemon-name
-                           "/logo.jpg")
-                 :id "daemon-img"}]]]
-        [:div {:class "row search-bar-row"}
-          [:form {:method "GET" :class "search-form"}
-           [:div {:class "form-group"}
-            [:input {:type "text"
-                     :name "terms"
-                     :class "form-control"
-                     :id "search"
-                     :placeholder "search Dr. Peterson's YouTube"}]]
-           [:div {:class "form-group"}
-            [:button {:type "submit" :class "btn btn-lg btn-primary"} "Search"]]]]]
-        [:div {:id "results-div"}
-         search-component]
+        [:a {:href home-url :id "header-img-atag"}
+         [:img {:src (str "imgs/"
+                          daemon-name
+                          "/logo")
+                :id "daemon-img"}]]]
+       [:div {:class "row search-bar-row"}
+        [:form {:method "GET" :class "search-form"}
+         [:div {:class "form-group"}
+          [:input {:type "text"
+                   :name "terms"
+                   :class "form-control"
+                   :id "search"
+                   :placeholder search-bar-text}]]
+         [:div {:class "form-group"}
+          [:button {:type "submit" :class "btn btn-lg btn-primary"} "Search"]]]]]
+      [:div {:id "results-div"}
+       search-component]
       [:script {:src "js/jquery.js"}]
-      [:script {:src "js/search.js"}]]]))
+      [:script {:src "js/search.js"}]]])))
