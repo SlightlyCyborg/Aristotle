@@ -20,8 +20,9 @@
   [daemon-name query-struct video-doc]
   (common/mapply
    solr/query (get-solr-block-connection daemon-name)
-   {:q (str "captions_t:"
+   {:q (str "captions_t:\""
             (:q query-struct)
+            "\""
             " AND video_id_s:\""
             (video-doc :id)
             "\"")
@@ -63,7 +64,10 @@
            "title_t:\""
            (:q stock-query)
            "\"^10 "
+           "captions_t:\""
            (:q stock-query)
+           "\""
+
            " \""
            (:q stock-query)
            "\"~10000^5"

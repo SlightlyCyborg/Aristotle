@@ -124,7 +124,7 @@
 
 (def into-string-array (partial into-array String))
 
-(def srt-source-folders ["/home/alex/aristotle_lisp/videos/"])
+(def srt-source-folders ["/home/alex/YangGangSearch/subs2"])
 
 (defn get-all-subtitle-file-objs [srt-source-folders]
   (flatten
@@ -219,16 +219,15 @@
       :stop_time_s (time-struct->string (get-in block [::time :stop]))})
    (get-in video-struct [::caption ::blocks])))
 
-(def connection (config/server :solr-connection))
-(def block-connection (config/server :solr-block-connection))
+(def connection ((config/get-by-name "andrew-yang") :solr-connection))
+(def block-connection ((config/get-by-name "andrew-yang") :solr-block-connection))
 
 (defn index [video-structs]
   (->>
    (doall
     (mapv
      make-index-struct
-     video-structs))
-   (#(println (solr/add-docs connection %))))
+     video-structs)) (#(println (solr/add-docs connection %))))
   ;video-structs
   )
 

@@ -50,7 +50,12 @@
                  [:div {:class "search-result-title col-md-8"}
                   [:div {:class "container"}
                    [:div {:class "row"}
-                    [:h3 (first (:title_t doc))]]
+                    [:h3 (if (string? (:title_t doc))
+                           ;;Weird title bug.
+                           ;;Youtube used to respond with an array?
+                           ;;Now it responds with string?
+                           (:title_t doc)
+                           (first (:title_t doc)))]]
                    [:div {:class "row"}
                     (into []
                      (cons
