@@ -1,4 +1,4 @@
-(defproject aristotle "3.0.0"
+(defproject aristotle "3.1.0"
   :description "A search engine for Elliot's content"
   :url "http://aristotle.daemon.life"
   :license {:name "The Daemon License"
@@ -18,6 +18,7 @@
                  [org.xerial/sqlite-jdbc "3.7.15-M1"]
                  [pegasus "0.7.0"]
                  [clj-solr "1.3.0"]]
+  :resource-paths ["lib/SubtitleDownloader.jar"]
   :main aristotle.server)
 
 
